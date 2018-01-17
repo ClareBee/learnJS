@@ -2,13 +2,32 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
-  state = {questions: []}
+  constructor(props){
+    super(props);
+    this.state = {
+      questions: []
+    }
+  }
+
 
   componentDidMount() {
-    fetch('/questions')
-      .then(res => res.json())
-      .then(questions => this.setState({ questions }));
+    const url = "/questions";
+    fetch(url)
+    .then(function(response) {
+    if(response.ok){
+      console.log("success");
+      return response.json();
+    }
+    throw new Error("Network response wasn't ok");
+    })
+    .then(data => {
+    this.setState({questions: data});
+    })
+    .catch(function(error){
+    console.log(error.message);
+    });
   }
+
 
   render() {
     console.log(this.state.questions);
@@ -17,7 +36,7 @@ class App extends Component {
         <p>This is the app.js in react</p>
         <h1>Users</h1>
         {this.state.questions.map(question =>
-          <div key={question._id}>{question.question}</div>
+          <div>{question.question}</div>
         )}
       </div>
     );

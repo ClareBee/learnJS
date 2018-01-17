@@ -30,7 +30,7 @@ MongoClient.connect("mongodb://localhost:27017/questiondb", function(err, client
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 app.get('/', function(req, res){
-  res.sendFile(__dirname + "client/build/index.html");
+  res.sendFile(__dirname + "client/src/app.js");
 });
 app.get("/questions", function(req, res){
   db.collection("questions").find().toArray(function(err, results){
