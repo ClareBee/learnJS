@@ -1,4 +1,5 @@
 var express = require('express');
+var app = express();
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -6,36 +7,31 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
 var ObjectId = require("mongodb").ObjectId;
-
-var MongoClient = require("mongodb").MongoClient;
-MongoClient.connect("mongodb://localhost:27017/questions", function(err, client){
-  if(err){
-    return console.log(err);
-  }
-  db = client.db("questions");
-  console.log("Connected to DB");
-  app.listen(3002, function () {
-  console.log("App running on port " + this.address().port);
-  });
-});
-var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
+var MongoClient = require("mongodb").MongoClient;
+MongoClient.connect("mongodb://localhost:27017/questiondb", function(err, client){
+  if(err){
+    return console.log(err);
+  }
+  db = client.db("questiondb");
+  console.log("Connected to DB");
+  app.listen(3001, function () {
+  console.log("App running on port " + this.address().port);
+  });
+});
+
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+app.get('/', function(req, res){
+  res.sendFile(__dirname + "client/build/index.html");
+});
 app.get("/questions", function(req, res){
   db.collection("questions").find().toArray(function(err, results){
 	  if(err){

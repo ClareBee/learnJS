@@ -1,4 +1,4 @@
-use questions;
+use questiondb;
 
 db.dropDatabase();
 
@@ -9,5 +9,5 @@ var questions = [
   }
 ]
 
-db.questions.insertMany(questions);
-db.questions.find();
+db.questiondb.insertMany(questions);
+db.questiondb.find();

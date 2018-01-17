@@ -8,6 +8,7 @@
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "jade": "~1.11.0",
+    "mongodb": "^3.0.1",
     "morgan": "~1.9.0",
     "serve-favicon": "~2.4.5"
   },
@@ -15,5 +16,9 @@
     "test": "mocha client/src/models/specs",
     "start": "mongo < seeds.js && nodemon server.js",
     "webpack": "cd client && webpack -w"
+  },
+  "devDependencies": {
+    "mocha": "^4.1.0",
+    "webpack": "^3.10.0"
   }
 }
