@@ -1,10 +1,7 @@
 {
   "name": "react-back",
   "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
-  },
+  "main": "server.js",
   "dependencies": {
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
@@ -13,5 +10,10 @@
     "jade": "~1.11.0",
     "morgan": "~1.9.0",
     "serve-favicon": "~2.4.5"
+  },
+  "scripts": {
+    "test": "mocha client/src/models/specs",
+    "start": "mongo < seeds.js && nodemon server.js",
+    "webpack": "cd client && webpack -w"
   }
 }

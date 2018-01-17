@@ -7,7 +7,19 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var ObjectId = require("mongodb").ObjectId;
 
+var MongoClient = require("mongodb").MongoClient;
+MongoClient.connect("mongodb://localhost:27017/questions", function(err, client){
+  if(err){
+    return console.log(err);
+  }
+  db = client.db("questions");
+  console.log("Connected to DB");
+  app.listen(3002, function () {
+  console.log("App running on port " + this.address().port);
+  });
+});
 var app = express();
 
 // view engine setup
@@ -24,6 +36,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.get("/questions", function(req, res){
+  db.collection("questions").find().toArray(function(err, results){
+	  if(err){
+		return console.log(err);
+	  }
+	  res.json(results);
+	});
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
