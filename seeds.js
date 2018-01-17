@@ -9,5 +9,5 @@ var questions = [
   }
 ]
 
-db.questiondb.insertMany(questions);
-db.questiondb.find();
+db.questions.insertMany(questions);
+db.questions.find();
