@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import QuestionContainer from "./containers/QuestionContainer";
+import Router from "./containers/Router";
 
 class App extends Component {
   constructor(props){
@@ -31,16 +31,12 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.questions);
     return (
-      <div className="App">
-        <p>This is the app.js in react</p>
-        <h1>Question topics</h1>
-        {this.state.questions.map(question =>
-          <div>{question.question}</div>
-        )}
-        <QuestionContainer questions={this.state.questions}/>
-      </div>
+      <React.Fragment>
+      <p>This is the app.js in react</p>
+
+      <Router data={this.state} />
+    </React.Fragment>
     );
   }
 }

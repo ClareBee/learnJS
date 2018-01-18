@@ -18,13 +18,21 @@ class QuestionContainer extends React.Component {
 
   render(){
     console.log(this.props);
-    const questions = this.props.questions.map((question, index) => {
+
+    if(!this.props.questions){
+      return null
+    }
+    const questions = this.props.data.questions.map((question, index) => {
       return <li onClick={this.handleClick} value={index}>{question.topic}</li>
     });
+
     return(
+    <div>
+      <h1>hi</h1>
       <ul>
         {questions}
       </ul>
+    </div>
     );
   }
 }
