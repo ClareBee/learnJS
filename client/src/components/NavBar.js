@@ -20,6 +20,9 @@ const NavBar = () => {
         <IndexLinkContainer to="/profile">
           <NavItem>Profile</NavItem>
         </IndexLinkContainer>
+        <IndexLinkContainer to="/new-question">
+          <NavItem>New Question</NavItem>
+        </IndexLinkContainer>
       </Nav>
     </Navbar>
   );

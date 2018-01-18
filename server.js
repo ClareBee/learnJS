@@ -1,12 +1,13 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
+var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var index = require('./routes/index');
+var mongoose = require('mongoose');
+var Question = require('./Models/Question.js');
 var ObjectId = require("mongodb").ObjectId;
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -28,6 +29,8 @@ MongoClient.connect("mongodb://localhost:27017/questiondb", function(err, client
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// catch 404 and forward to error handler
+
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + "client/src/app.js");
@@ -41,7 +44,17 @@ app.get("/questions", function(req, res){
 	});
 });
 
-// catch 404 and forward to error handler
+app.post("/new-question", function(req, res){
+  var newQuestion = new Question(req.body);
+  db.collection("questions").save(newQuestion, function(err, result){
+		if(err) {
+			console.log(err);
+		}
+		console.log("Saved to database.");
+		res.json('ok');
+	});
+});
+
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
@@ -58,5 +71,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;
