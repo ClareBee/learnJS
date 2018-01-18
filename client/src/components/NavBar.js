@@ -14,6 +14,9 @@ const NavBar = () => {
         <IndexLinkContainer to="/topics">
           <NavItem>Topics</NavItem>
         </IndexLinkContainer>
+        <IndexLinkContainer to="/profile">
+          <NavItem>Profile</NavItem>
+        </IndexLinkContainer>
       </Nav>
     </Navbar>
   );
