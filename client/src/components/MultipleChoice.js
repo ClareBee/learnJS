@@ -86,7 +86,7 @@ render(){
       <form onSubmit={this.handleSubmit} ref="answer-form">
         <input onChange={this.handleChange} required type="text" name={question.answer} placeholder="Your answer"/>
 
-        <button>Answer</button>
+        <button className="answer-btn btn btn-success" >Answer</button>
       </form>
 
       </li>
