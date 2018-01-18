@@ -1,5 +1,7 @@
 import React from 'react';
 
+
+
 class WelcomePage extends React.Component {
   constructor(props){
     super(props);
@@ -7,10 +9,17 @@ class WelcomePage extends React.Component {
 
     }
   }
+
   render(){
+
     return(
-      <h1>welcome page</h1>
-  
+      <React.Fragment>
+      <section className="welcome" >
+
+      </section>
+      <div className="welcome-message"><h1>LearnJS</h1></div>
+    </React.Fragment>
+
     )
   }
 

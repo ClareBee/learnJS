@@ -71,7 +71,16 @@ handleAnotherRound(){
   })
 }
 render(){
+  // const questionSet = this.props.topic.questions;
+  // let selectedQuestions = [];
+  // let i = 0;
+  // while(i < 3){
+  //   selectedQuestions.push(questionSet[Math.floor(Math.random() * questionSet.length)])
+  //   i++;
+  // }
+
   const questionsAsked = this.props.topic.questions.map((question, index) => {
+
    return (
       <li><p>{question.question}</p>
       <form onSubmit={this.handleSubmit} ref="answer-form">

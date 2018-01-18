@@ -5,16 +5,26 @@ db.dropDatabase();
 
 var questions = [
   {
-    topic: "identity",
-    question: "what is your name?",
-    answer: "Clare"
+    topic: "acronyms",
+    question: "what is SSH?",
+    answer: "Secure Shell"
   },
   {
-    topic: "security",
-    question: "What is your password?",
-    answer: "12345"
+    topic: "acronyms",
+    question: "What is ASCII?",
+    answer: "American Standard Code for Information Interchange"
+  },
+  {
+    topic: "acronyms",
+    question: "What is DTD?",
+    answer: "Document Type Definition"
+  },
+  {
+    topic: "Maths",
+    question: "What is the method on Math for exponentiation?",
+    answer: ".pow"
   }
-],
+]
 var randomanswers = [
   {
     topic: "identity",
