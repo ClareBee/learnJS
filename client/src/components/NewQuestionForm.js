@@ -55,7 +55,8 @@ class NewQuestionForm extends React.Component {
       <React.Fragment>
         <h1 className="sub-title">Found out something new? Add it here!</h1>
 
-        <div>
+        <div className="form-container">
+
           <form ref="questionForm" action="" method="POST" onSubmit={this.handleSubmit}>
             <div className="row">
               <input onChange={this.handleChange} required type="text" name="topic" placeholder="Topic"/>
@@ -69,9 +70,10 @@ class NewQuestionForm extends React.Component {
 
 
             <div className="row">
-              <button>Add your question</button>
+              <button className="question-button btn btn-success">Add your question</button>
             </div>
           </form>
+
         </div>
       </React.Fragment>
     )
