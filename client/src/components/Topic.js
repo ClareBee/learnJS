@@ -5,10 +5,17 @@ class Topic extends React.Component {
     super(props);
   }
   render(){
-    console.log(this.props);
+    const questions = this.props.data;
+    const chosen = this.props.match.params.id;
+    let selectedContent = questions.questions.map((question, index) => {
+      if(index == chosen){
+        return <h1>{question.topic}</h1>
+      }
+    });
 
     return(
-      <h1>this is the topic</h1>
+      <h1>{selectedContent}</h1>
+
     )
   }
 }
