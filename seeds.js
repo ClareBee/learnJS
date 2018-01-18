@@ -4,10 +4,13 @@ db.dropDatabase();
 
 var questions = [
   {
+    topic: "identity",
     question: "what's your name?",
     answer: "Clare"
   },
-  { question: "What's your password?",
+  {
+    topic: "security",
+    question: "What's your password?",
     password: "12345"}
 ]
 

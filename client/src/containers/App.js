@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import QuestionContainer from "./containers/QuestionContainer";
 
 class App extends Component {
   constructor(props){
@@ -34,10 +35,11 @@ class App extends Component {
     return (
       <div className="App">
         <p>This is the app.js in react</p>
-        <h1>Users</h1>
+        <h1>Question topics</h1>
         {this.state.questions.map(question =>
           <div>{question.question}</div>
         )}
+        <QuestionContainer questions={this.state.questions}/>
       </div>
     );
   }
