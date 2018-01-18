@@ -33,10 +33,8 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-      <p>This is the app.js in react</p>
-
-      <Router data={this.state} />
-    </React.Fragment>
+        <Router data={this.state} />
+      </React.Fragment>
     );
   }
 }

@@ -55,6 +55,15 @@ app.post("/new-question", function(req, res){
 	});
 });
 
+app.get("/topic/:id", function(req, res){
+  db.collection("randomanswers").find().toArray(function(err, results){
+    if(err){
+      return console.log(err);
+    }
+    re.json(results);
+  });
+});
+
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;

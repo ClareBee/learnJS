@@ -1,5 +1,6 @@
 import React from 'react';
 import MultipleChoice from './MultipleChoice';
+
 class Topic extends React.Component {
   constructor(props){
     super(props);
@@ -9,7 +10,7 @@ class Topic extends React.Component {
     const chosen = this.props.match.params.id;
     let selectedContent = questions.questions.map((question, index) => {
       if(index == chosen){
-        return <h1>{question.topic}</h1>
+        return <h1 key={index}>Topic: {question.topic}</h1>
       }
     });
 

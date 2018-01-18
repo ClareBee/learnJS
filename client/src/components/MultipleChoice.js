@@ -6,7 +6,6 @@ class MultipleChoice extends React.Component {
     this.state = {
       inputAnswer: "",
       correctAnswer: "",
-      showTick: false,
       points: 0,
       dogImage: ""
     }
@@ -28,7 +27,6 @@ handleSubmit(e){
     console.log("success")
     this.setState( prevState => {
       return {
-      showTick: true,
       points: prevState.points + 1
     }
     });
@@ -87,7 +85,7 @@ render(){
   })
 return(
   <div>
-  <h1>this is the container</h1>
+  <h1>Questions:</h1>
   <ul>
   {questionsAsked}</ul>
   <h1>{this.state.points}</h1>
