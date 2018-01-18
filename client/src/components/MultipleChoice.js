@@ -5,7 +5,9 @@ class MultipleChoice extends React.Component {
     super(props);
     this.state = {
       inputAnswer: "",
-      correctAnswer: ""
+      correctAnswer: "",
+      showTick: false,
+      points: 0
     }
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,11 +28,23 @@ handleSubmit(e){
   e.preventDefault();
   if(this.state.inputAnswer.toLowerCase() === this.state.correctAnswer.toLowerCase()){
     console.log("success")
-  }else{
-    console.log("failure")
-  }
+    this.setState( prevState => {
+      return {
+      showTick: true,
+      points: prevState.points + 1
+    }
+    });
+    e.target.style.color = "green";
+    e.target.style.border = "solid 4px green";
 
+  }else{
+    console.log("failure");
+    e.target.style.color = "red";
+    e.target.style.border = "solid 4px red";
+  }
+  console.log(this.state.points)
 }
+
 
 render(){
   const questionsAsked = this.props.topic.questions.map((question, index) => {
@@ -38,8 +52,10 @@ render(){
       <li><p>{question.question}</p>
       <form onSubmit={this.handleSubmit} ref="answer-form">
         <input onChange={this.handleChange} required type="text" name={question.answer} placeholder="Your answer"/>
+
         <button>Answer</button>
       </form>
+
       </li>
      )
   })
