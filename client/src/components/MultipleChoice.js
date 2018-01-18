@@ -21,8 +21,10 @@ handleChange(e){
 }
 
 handleSubmit(e){
+  console.log(this.state.inputAnswer);
+  console.log(this.state.correctAnswer);
   e.preventDefault();
-  if(this.state.inputAnswer.toLowerCase == this.state.correctAnswer.toLowerCase){
+  if(this.state.inputAnswer.toLowerCase() === this.state.correctAnswer.toLowerCase()){
     console.log("success")
   }else{
     console.log("failure")

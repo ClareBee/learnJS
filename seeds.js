@@ -11,7 +11,7 @@ var questions = [
   {
     topic: "security",
     question: "What is your password?",
-    password: "12345"
+    answer: "12345"
   }
 ]
 
