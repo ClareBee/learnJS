@@ -20,12 +20,9 @@ handleChange(e){
     inputAnswer: input,
     correctAnswer: e.target.name
   });
-
 }
 
 handleSubmit(e){
-  console.log(this.state.inputAnswer);
-  console.log(this.state.correctAnswer);
   e.preventDefault();
   if(this.state.inputAnswer.toLowerCase() === this.state.correctAnswer.toLowerCase()){
     console.log("success")
@@ -35,20 +32,20 @@ handleSubmit(e){
       points: prevState.points + 1
     }
     });
-    e.target.style.color = "green";
-    e.target.style.border = "solid 4px green";
+    this.styleAnswers(e, "green");
 
   }else{
-    console.log("failure");
-    e.target.style.color = "red";
-    e.target.style.border = "solid 4px red";
+    this.styleAnswers(e, "red");
   }
-  console.log(this.state.points)
 }
 
+styleAnswers(e, answerColor){
+  e.target.style.color = answerColor;
+  e.target.style.border = `solid 4px ${answerColor}`;
+}
 componentDidUpdate(){
   if(this.state.points == 3){
-    const dogUrl = "https://cataas.com/cat/cute";
+    const dogUrl = "https://dog.ceo/api/breeds/image/random";
     this.setState( prevState => {
       return {
         points: null
@@ -58,21 +55,23 @@ componentDidUpdate(){
     .then(function(response) {
     if(response.ok){
       console.log("success");
-      return response;
+      return response.json();
     }
     throw new Error("Network response wasn't ok");
     })
     .then(data => {
-    this.setState({dogImage: data.url});
-    console.log(data);
+    this.setState({dogImage: data.message});
     })
     .catch(function(error){
     console.log(error.message);
     });
-
   }
 }
-
+handleAnotherRound(){
+  this.setState({
+    dogImage: ""
+  })
+}
 render(){
   const questionsAsked = this.props.topic.questions.map((question, index) => {
    return (
