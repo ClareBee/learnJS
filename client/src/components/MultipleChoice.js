@@ -7,7 +7,8 @@ class MultipleChoice extends React.Component {
       inputAnswer: "",
       correctAnswer: "",
       showTick: false,
-      points: 0
+      points: 0,
+      dogImage: ""
     }
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
@@ -45,6 +46,32 @@ handleSubmit(e){
   console.log(this.state.points)
 }
 
+componentDidUpdate(){
+  if(this.state.points == 3){
+    const dogUrl = "https://cataas.com/cat/cute";
+    this.setState( prevState => {
+      return {
+        points: null
+      }
+    })
+    fetch(dogUrl)
+    .then(function(response) {
+    if(response.ok){
+      console.log("success");
+      return response;
+    }
+    throw new Error("Network response wasn't ok");
+    })
+    .then(data => {
+    this.setState({dogImage: data.url});
+    console.log(data);
+    })
+    .catch(function(error){
+    console.log(error.message);
+    });
+
+  }
+}
 
 render(){
   const questionsAsked = this.props.topic.questions.map((question, index) => {
@@ -64,6 +91,8 @@ return(
   <h1>this is the container</h1>
   <ul>
   {questionsAsked}</ul>
+  <h1>{this.state.points}</h1>
+  <img src={this.state.dogImage} />
   </div>
   )
 }
