@@ -1,5 +1,5 @@
 import React from 'react';
-
+import MultipleChoice from './MultipleChoice';
 class Topic extends React.Component {
   constructor(props){
     super(props);
@@ -14,8 +14,10 @@ class Topic extends React.Component {
     });
 
     return(
-      <h1>{selectedContent}</h1>
-
+      <React.Fragment>
+        {selectedContent}
+      <MultipleChoice topic={this.props.data}/>
+    </React.Fragment>
     )
   }
 }

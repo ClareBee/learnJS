@@ -6,11 +6,8 @@ class QuestionContainer extends React.Component {
       super(props);
       this.state = {
         chosenTopic: ""
-
       }
-
       this.handleClick = this.handleClick.bind(this);
-
     }
 
 //gets index of item clicked
@@ -18,7 +15,6 @@ class QuestionContainer extends React.Component {
   this.setState({
     chosenTopic: e.target.value
     });
-
   }
 
 
