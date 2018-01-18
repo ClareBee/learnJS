@@ -11,6 +11,9 @@ const NavBar = () => {
         </Navbar.Brand>
       </Navbar.Header>
       <Nav>
+        <IndexLinkContainer to="/">
+          <NavItem>Home</NavItem>
+        </IndexLinkContainer>
         <IndexLinkContainer to="/topics">
           <NavItem>Topics</NavItem>
         </IndexLinkContainer>
