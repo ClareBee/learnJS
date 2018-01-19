@@ -8,7 +8,8 @@ class MultipleChoice extends React.Component {
       inputAnswer: "",
       correctAnswer: "",
       points: 0,
-      dogImage: ""
+      dogImage: "",
+      chosenQuestions: 3
     }
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
@@ -74,7 +75,7 @@ handleAnotherRound(){
   });
 }
 
-//where can this be called?
+//where could this be called?
 getRandomThree(arr){
   const selected = sampleSize(arr, 3).slice();
   return selected;
@@ -82,8 +83,8 @@ getRandomThree(arr){
 
 render(){
   // const threeQq = this.getRandomThree(this.props.topic.questions).slice();
-
-  const questionsAsked = this.props.topic.questions.map((question, index) => {
+  const threeQuestions = this.props.topic.questions.slice(0, this.state.chosenQuestions);
+  const questionsAsked = threeQuestions.map((question, index) => {
     return(
       <li>
         <p>{question.question}</p>
