@@ -23,12 +23,12 @@ class QuestionContainer extends React.Component {
 
     const questions = this.props.questions.questions.map((question, index) => {
       let url = `/topics/${index}`;
-      return  <li onClick={this.handleClick} value={index}><NavLink to={url} key={index}>{question.topic}</NavLink></li>
+      return  <li className="topic-items" onClick={this.handleClick} value={index}><NavLink to={url} key={index}>{question.topic}</NavLink></li>
     });
 
     return(
     <div>
-      <ul>
+      <ul className="topic-list">
         {questions}
       </ul>
     </div>

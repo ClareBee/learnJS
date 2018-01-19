@@ -71,15 +71,11 @@ handleAnotherRound(){
   })
 }
 render(){
-  // const questionSet = this.props.topic.questions;
-  // let selectedQuestions = [];
-  // let i = 0;
-  // while(i < 3){
-  //   selectedQuestions.push(questionSet[Math.floor(Math.random() * questionSet.length)])
-  //   i++;
-  // }
+  const questionSet = this.props.topic.questions;
+  const shuffledQq = questionSet.sort(() => .5 - Math.random());
+  let selectedQq = shuffledQq.slice(0, 3);
 
-  const questionsAsked = this.props.topic.questions.map((question, index) => {
+  const questionsAsked = selectedQq.map((question, index) => {
 
    return (
       <li><p>{question.question}</p>
