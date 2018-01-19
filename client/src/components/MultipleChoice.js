@@ -1,4 +1,5 @@
 import React from 'react';
+import sampleSize from 'lodash/sampleSize';
 
 class MultipleChoice extends React.Component {
   constructor(props){
@@ -11,6 +12,7 @@ class MultipleChoice extends React.Component {
     }
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
+  this.getRandomThree = this.getRandomThree.bind(this);
 }
 
 handleChange(e){
@@ -31,11 +33,11 @@ handleSubmit(e){
     }
     });
     this.styleAnswers(e, "green");
-
   }else{
     this.styleAnswers(e, "red");
   }
 }
+
 
 styleAnswers(e, answerColor){
   e.target.style.color = answerColor;
@@ -65,38 +67,44 @@ componentDidUpdate(){
     });
   }
 }
+
 handleAnotherRound(){
   this.setState({
     dogImage: ""
-  })
+  });
 }
+
+//where can this be called?
+getRandomThree(arr){
+  const selected = sampleSize(arr, 3).slice();
+  return selected;
+}
+
 render(){
-  const questionSet = this.props.topic.questions;
-  const shuffledQq = questionSet.sort(() => .5 - Math.random());
-  let selectedQq = shuffledQq.slice(0, 3);
+  // const threeQq = this.getRandomThree(this.props.topic.questions).slice();
 
-  const questionsAsked = selectedQq.map((question, index) => {
-
-   return (
-      <li><p>{question.question}</p>
-      <form onSubmit={this.handleSubmit} ref="answer-form">
-        <input onChange={this.handleChange} required type="text" name={question.answer} placeholder="Your answer"/>
-
-        <button className="answer-btn btn btn-success" >Answer</button>
-      </form>
-
+  const questionsAsked = this.props.topic.questions.map((question, index) => {
+    return(
+      <li>
+        <p>{question.question}</p>
+        <form onSubmit={this.handleSubmit} ref="answer-form">
+          <input onChange={this.handleChange} required type="text" name={question.answer} placeholder="Your answer"/>
+          <button className="answer-btn btn btn-success" >Answer</button>
+        </form>
       </li>
-     )
-  })
+    );
+  });
+
 return(
   <div>
-  <h1>Questions:</h1>
-  <ul>
-  {questionsAsked}</ul>
-  <h1>{this.state.points}</h1>
-  <img src={this.state.dogImage} />
+    <h1>Questions:</h1>
+    <ul>
+      {questionsAsked}
+    </ul>
+    <h1>{this.state.points}</h1>
+    <img src={this.state.dogImage} />
   </div>
-  )
+);
 }
 
 }
