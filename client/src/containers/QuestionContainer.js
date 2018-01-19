@@ -23,9 +23,9 @@ class QuestionContainer extends React.Component {
   render(){
     const originalData = this.props.questions.questions;
     const duplicatesRemoved = uniqBy(originalData, 'topic');
-    const questions = duplicatesRemoved.map((question, index) => {
-      let url = `/topics/${index}`;
-      return  <li className="topic-item" onClick={this.handleClick} value={index}><NavLink to={url} key={index}>{question.topic}</NavLink></li>
+    const questions = duplicatesRemoved.map((question) => {
+      let url = `/topics/${question._id}`;
+      return  <li className="topic-item" onClick={this.handleClick} value={question._id}><NavLink to={url} key={question._id}>{question.topic}</NavLink></li>
     });
 
     return(
