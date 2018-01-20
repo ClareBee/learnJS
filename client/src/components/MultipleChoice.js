@@ -1,5 +1,6 @@
 import React from 'react';
 import sampleSize from 'lodash/sampleSize';
+import MyModal from './Modal';
 
 class MultipleChoice extends React.Component {
   constructor(props){
@@ -97,14 +98,20 @@ render(){
   });
 
 return(
+  <React.Fragment>
   <div>
     <h1>Questions:</h1>
     <ul>
       {questionsAsked}
     </ul>
     <h1>{this.state.points}</h1>
-    <img src={this.state.dogImage} />
+    {/* <img src={this.state.dogImage} /> */}
+
+
+
   </div>
+  <MyModal image={this.state.dogImage}/>
+</React.Fragment>
 );
 }
 

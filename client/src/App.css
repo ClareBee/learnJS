@@ -1,7 +1,7 @@
 
 body {
   padding: 50px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 h1, h2, h3 {
@@ -98,6 +98,15 @@ input {
   float: right;
 }
 
+.my-modal {
+  position: fixed;
+  top: 10%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  background-color: rgba(255, 255, 255, .9);
+  box-shadow: 2px 14px 18px 3px rgba(0,0,0,0.4);
+}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;

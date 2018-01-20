@@ -96,9 +96,11 @@ class DragDropContainer extends React.Component {
     })
     console.log(answers);
     return(
+
       	<DragDropContextProvider backend={HTML5Backend}>
       <div>
       <h1>Drag and Drop Container</h1>
+
       <div >
         <button onClick={this.handleClick}>Get random question</button>
         <button onClick={this.answerClick}>Get random answers</button>
@@ -119,7 +121,9 @@ class DragDropContainer extends React.Component {
         />
     </div>
 
+
     </div>
+
 	</DragDropContextProvider>
     )
   }
