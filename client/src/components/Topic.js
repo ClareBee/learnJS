@@ -6,9 +6,9 @@ class Topic extends React.Component {
     super(props);
   }
   render(){
-    const questions = this.props.data;
+    const questions = this.props.data.questions;
     const chosen = this.props.match.params.id;
-    let selectedContent = questions.questions.map((question) => {
+    let selectedContent = questions.map((question) => {
       if(question._id == chosen){
         return <h1 key={question._id}>Topic: {question.topic}</h1>
       }

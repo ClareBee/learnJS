@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import QuestionContainer from './QuestionContainer';
+import DragDropContainer from './DragDropContainer';
 import NewQuestionForm from '../components/NewQuestionForm';
 import AllQuestions from '../components/AllQuestions';
 import WelcomePage from './WelcomePage';
@@ -20,6 +21,7 @@ class Router extends React.Component {
           <Route path="/all-questions" render={props => <AllQuestions questions={this.props.data.questions}/>} />
         {/* passes through props from App.js and spreads url params  */}
           <Route path="/topics" render={props => <QuestionContainer questions={this.props.data} />}/>
+          <Route path="/drag-and-drop" render={props => <DragDropContainer {...props} data={this.props.data} />} />
           <Route exact path="/topics/:id" render={props => <Topic {...props} data={this.props.data} />} />
 
         </React.Fragment>

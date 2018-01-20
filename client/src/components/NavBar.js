@@ -14,14 +14,17 @@ const NavBar = () => {
         <IndexLinkContainer to="/">
           <NavItem>Home</NavItem>
         </IndexLinkContainer>
-        <IndexLinkContainer to="/topics">
-          <NavItem>Topics</NavItem>
-        </IndexLinkContainer>
         <IndexLinkContainer to="/profile">
           <NavItem>Profile</NavItem>
         </IndexLinkContainer>
+        <IndexLinkContainer to="/topics">
+          <NavItem>Test Your Knowledge</NavItem>
+        </IndexLinkContainer>
         <IndexLinkContainer to="/new-question">
-          <NavItem>New Question</NavItem>
+          <NavItem>Add New Question</NavItem>
+        </IndexLinkContainer>
+        <IndexLinkContainer to="/all-questions">
+          <NavItem>All Questions</NavItem>
         </IndexLinkContainer>
       </Nav>
     </Navbar>

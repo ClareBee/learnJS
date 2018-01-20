@@ -9,8 +9,8 @@ class AllQuestions extends React.Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    // this.deleteById = this.deleteById.bind(this);
   }
+
   //delete individual question
   handleSubmit(e){
     e.preventDefault();
@@ -41,11 +41,6 @@ class AllQuestions extends React.Component {
       emptied: true
     });
   }
-  // componentWillUnmount(){
-  //   this.setState({
-  //     selectedQuestion: []
-  //   })
-  // }
 
   render(){
     console.log(this.props)
