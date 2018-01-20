@@ -107,6 +107,11 @@ input {
   height: 50%;
   background-color: rgba(255, 255, 255, .9);
   box-shadow: 2px 14px 18px 3px rgba(0,0,0,0.4);
+
+}
+.failure-message {
+  text-align: center;
+  margin-top: 35%;
 }
 .doggy-image {
   width: 100%;

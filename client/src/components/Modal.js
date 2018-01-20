@@ -30,7 +30,7 @@ class MyModal extends React.Component{
       </div>
       <div ref="failure" onClick={this.handleFailureClick} className="my-modal">
         <div className="delete-gif">&times;</div>
-        <h1>you fail</h1>
+        <h2 className="failure-message">Oh noes! You didn't get enough points. Try again next time!</h2>
       </div>
     </div>
     )

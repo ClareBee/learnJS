@@ -61,7 +61,7 @@ class AllQuestions extends React.Component {
                   className={this.state.selectedQuestion.includes(question._id) ? "deleted" : ""}>
                   {question.question}
                 </li>
-                <button
+                <button key={question._id}
                   className={this.state.selectedQuestion.includes(question._id) ? "deleted" : ""}>
                   delete
                 </button>
