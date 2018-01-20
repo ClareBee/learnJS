@@ -5,7 +5,7 @@ class AllQuestions extends React.Component {
     super(props);
     this.state = {
       emptied: false,
-      selectedQuestion: null
+      selectedQuestion: 0
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -14,17 +14,15 @@ class AllQuestions extends React.Component {
   //delete individual question
   handleSubmit(e){
     e.preventDefault();
-    console.log(e.target.name);
-    // this.setState({
-    //   selectedQuestion: e.target.name
-    // })
     const deleteOneUrl = `/questions/delete/${e.target.name}`;
-    console.log(deleteOneUrl);
     fetch(deleteOneUrl, {
       method: "DELETE"
     }).then(res => res)
     .catch(error => console.log("Error: ", error))
     .then(response => console.log("Respose: ", response));
+    this.setState({
+      selectedQuestion: e.target.name
+    })
     this.forceUpdate();
   }
 
@@ -62,7 +60,14 @@ class AllQuestions extends React.Component {
     }
     if(!this.state.emptied){
     allquestions = this.props.questions.map(question => {
-      return <form action="" method="POST" name={question._id} onSubmit={this.handleSubmit}><li value={question._id}>{question.question}</li><button>delete</button></form>
+
+      return <form action="" method="POST" name={question._id} onSubmit={this.handleSubmit}
+                  className={question._id == this.state.selectedQuestion ? "deleted" : ""}>
+                <li value={question._id}>
+                  {question.question}
+                </li>
+                <button>delete</button>
+             </form>
       });
     }
     return(
