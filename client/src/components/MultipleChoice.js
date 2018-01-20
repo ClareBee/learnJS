@@ -10,8 +10,10 @@ class MultipleChoice extends React.Component {
       correctAnswer: "",
       points: 0,
       dogImage: "",
-      chosenQuestions: 3
-    }
+      chosenQuestions: 3,
+      answeredQuestions: [],
+      }
+
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
   this.getRandomThree = this.getRandomThree.bind(this);
@@ -38,6 +40,12 @@ handleSubmit(e){
   }else{
     this.styleAnswers(e, "red");
   }
+  let answered = this.state.answeredQuestions.slice();
+  answered.push(e.target.name)
+  this.setState({
+    answeredQuestions: answered
+  })
+  this.forceUpdate();
 }
 
 
@@ -83,15 +91,16 @@ getRandomThree(arr){
 }
 
 render(){
+  console.log(this.state.answeredQuestions)
   // const threeQq = this.getRandomThree(this.props.topic.questions).slice();
   const threeQuestions = this.props.topic.questions.slice(0, this.state.chosenQuestions);
   const questionsAsked = threeQuestions.map((question, index) => {
     return(
       <li key={index}>
         <p>{question.question}</p>
-        <form onSubmit={this.handleSubmit} ref="answer-form">
+        <form onSubmit={this.handleSubmit} name={index} ref="answer-form">
           <input onChange={this.handleChange} required type="text" name={question.answer} placeholder="Your answer"/>
-          <button className="answer-btn btn btn-success" >Answer</button>
+          <button disabled={this.state.answeredQuestions.includes(index.toString())} ref="submittedButton" className="answer-btn btn btn-success">Answer</button>
         </form>
       </li>
     );
