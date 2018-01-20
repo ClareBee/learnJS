@@ -119,7 +119,7 @@ return(
 
 
   </div>
-  <MyModal image={this.state.dogImage} points={this.state.points}/>
+  <MyModal image={this.state.dogImage} points={this.state.points} answeredQuestions={this.state.answeredQuestions}/>
 </React.Fragment>
 );
 }
