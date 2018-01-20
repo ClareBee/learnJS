@@ -30,8 +30,9 @@ class DragDropBox extends React.Component {
 		// }
     console.log(this.props);
     return(
+
     <div style={{ ...style, backgroundColor }}>
-      <h2>{this.props.text}</h2>
+      <h2>{this.props.answer}</h2>
     </div>
   )
   }

@@ -30,7 +30,7 @@ class DragDropBox extends React.Component {
 		// }
     return(
     <div style={{ ...style, backgroundColor }}>
-      <h2>drop box</h2>
+      <h2>{this.props.question}</h2>
     </div>
   )
   }

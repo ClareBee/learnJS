@@ -21,12 +21,15 @@ class DragDropContainer extends React.Component {
     this.handleAnswers = this.handleAnswers.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.answerClick = this.answerClick.bind(this);
+    this.generateAnswers = this.generateAnswers.bind(this);
 
   }
   handleClick(){
     this.getRandomQuestion();
   }
-
+  answerClick(){
+    this.handleAnswers();
+  }
 //get random question from database results
   getRandomQuestion(){
     let questionArray = [];
@@ -43,9 +46,11 @@ class DragDropContainer extends React.Component {
       questionBox: selectedQq[0]
     })
     this.forceUpdate();
+    this.generateAnswers();
+
   }
 
-  answerClick(){
+  generateAnswers(){
     const questions = this.props.data.questions;
     console.log("random answers accessed");
     let answers = [];
@@ -55,14 +60,15 @@ class DragDropContainer extends React.Component {
     let chosenA = sampleSize(answers, 2);
     this.setState({
       chosenAnswers: chosenA
-    })
-    this.handleAnswers();
+    });
   }
 
   handleAnswers(){
     let answerArray = this.state.chosenAnswers.slice();
-    console.log(this.state.questionBox)
-    answerArray.push();
+    let thisQuestion = this.state.questionBox;
+    console.log(thisQuestion);
+    answerArray.push(thisQuestion.answer);
+    console.log(answerArray);
     const shuffled = shuffle(answerArray);
     console.log(shuffled);
     this.setState({
@@ -97,7 +103,7 @@ class DragDropContainer extends React.Component {
         <button onClick={this.answerClick}>Get random answers</button>
       {this.state.dragDropBoxes.map(({}, index) => (
         <DragDropBox
-          answers={answers}
+          answer={this.state.dragDropBoxes[index].text}
           chosen={this.state.dragDropBoxes}
           // lastDroppedItem={lastDroppedItem}
           // onDrop={item => this.handleDrop(index, item)}
@@ -108,7 +114,7 @@ class DragDropContainer extends React.Component {
 
       <div>
         <QuestionBox
-
+          question={this.state.questionBox.question}
         />
     </div>
 
