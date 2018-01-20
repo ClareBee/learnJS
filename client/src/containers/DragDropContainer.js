@@ -8,12 +8,27 @@ DragDropContext(HTML5Backend)
 class DragDropContainer extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      dragDropBoxes: [{},{},{}],
+      questionBoxes: [{},{},{}],
+      droppedBoxIndex: [],
+    }
   }
   render(){
     return(
       <div>
       <h1>Drag and Drop Container</h1>
-      <DragDropBox />
+      <div >
+      {this.state.dragDropBoxes.map(({}, index) => (
+        <DragDropBox
+          // lastDroppedItem={lastDroppedItem}
+          // onDrop={item => this.handleDrop(index, item)}
+          key={index}
+        />
+      ))}
+    </div>
+  
+
     </div>
     )
   }
