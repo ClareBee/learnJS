@@ -55,7 +55,7 @@ app.post("/new-question", function(req, res){
 	});
 });
 //delete all
-app.delete("/questions", function(req, res){
+app.delete("/questions/delete", function(req, res){
   db.collection("questions").remove(function(err, result){
     if(err){
       console.log(err);

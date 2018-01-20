@@ -45,7 +45,7 @@ class NewQuestionForm extends React.Component {
         'Content-Type': 'application/json'
       }
     }).then(res => res.json())
-    .catch(error => console.error('Error:', error))
+    .catch(error => console.log('Error:', error))
     .then(response => console.log('Success:', response));
 }
 
