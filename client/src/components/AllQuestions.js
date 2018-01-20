@@ -5,7 +5,7 @@ class AllQuestions extends React.Component {
     super(props);
     this.state = {
       emptied: false,
-      selectedQuestion: 0
+      selectedQuestion: []
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -20,10 +20,12 @@ class AllQuestions extends React.Component {
     }).then(res => res)
     .catch(error => console.log("Error: ", error))
     .then(response => console.log("Respose: ", response));
+    let qq = this.state.selectedQuestion.slice();
+    qq.push(e.target.name);
     this.setState({
-      selectedQuestion: e.target.name
-    })
-    this.forceUpdate();
+      selectedQuestion: qq
+    });
+
   }
 
 
@@ -61,12 +63,15 @@ class AllQuestions extends React.Component {
     if(!this.state.emptied){
     allquestions = this.props.questions.map(question => {
 
-      return <form action="" method="POST" name={question._id} onSubmit={this.handleSubmit}
-                  className={question._id == this.state.selectedQuestion ? "deleted" : ""}>
-                <li value={question._id}>
+      return <form action="" method="POST" name={question._id} onSubmit={this.handleSubmit}>
+                <li value={question._id}
+                  className={this.state.selectedQuestion.includes(question._id) ? "deleted" : ""}>
                   {question.question}
                 </li>
-                <button>delete</button>
+                <button
+                  className={this.state.selectedQuestion.includes(question._id) ? "deleted" : ""}>
+                  delete
+                </button>
              </form>
       });
     }
