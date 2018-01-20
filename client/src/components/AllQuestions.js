@@ -19,25 +19,14 @@ class AllQuestions extends React.Component {
       method: "DELETE"
     }).then(res => res)
     .catch(error => console.log("Error: ", error))
-    .then(response => console.log("Respose: ", response));
+    .then(response => console.log("Response: ", response));
     let qq = this.state.selectedQuestion.slice();
     qq.push(e.target.name);
     this.setState({
       selectedQuestion: qq
     });
-
+    this.forceUpdate();
   }
-
-
-  // deleteById(){
-  //   const deleteOneUrl = `/questions/delete/${this.state.selectedQuestion}`;
-  //   fetch(deleteOneUrl, {
-  //     method: "DELETE"
-  //   }).then(res => res)
-  //   .catch(error => console.log("Error: ", error))
-  //   .then(response => console.log("Respose: ", response));
-  //   this.forceUpdate();
-  // }
 
   //delete all
   handleClick(){
@@ -52,13 +41,22 @@ class AllQuestions extends React.Component {
       emptied: true
     });
   }
+  // componentWillUnmount(){
+  //   this.setState({
+  //     selectedQuestion: []
+  //   })
+  // }
 
   render(){
     console.log(this.props)
     let message = "";
     let allquestions = "";
-    if(this.state.emptied){
+    let btn = this.refs.deleteButton;
+    if(this.state.emptied || this.state.selectedQuestion.length == this.props.questions.length){
        message = <li>All questions deleted</li>
+       if(btn){
+       btn.style.visibility = "hidden";
+     }
     }
     if(!this.state.emptied){
     allquestions = this.props.questions.map(question => {
@@ -78,7 +76,7 @@ class AllQuestions extends React.Component {
     return(
       <React.Fragment>
       <h1>all the questions</h1>
-      <button onClick={this.handleClick}>Delete all</button>
+      <button ref="deleteButton" onClick={this.handleClick} className={this.state.emptied ? "deleted" : ""}>Delete all</button>
       <ul>
         {message}{allquestions}
       </ul>

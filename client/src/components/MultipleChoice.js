@@ -86,7 +86,7 @@ render(){
   const threeQuestions = this.props.topic.questions.slice(0, this.state.chosenQuestions);
   const questionsAsked = threeQuestions.map((question, index) => {
     return(
-      <li>
+      <li key={index}>
         <p>{question.question}</p>
         <form onSubmit={this.handleSubmit} ref="answer-form">
           <input onChange={this.handleChange} required type="text" name={question.answer} placeholder="Your answer"/>
