@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import Router from "./containers/Router";
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DragDropContext } from 'react-dnd';
+import { DragDropContextProvider } from 'react-dnd';
+
 
 class App extends Component {
   constructor(props){
@@ -32,9 +36,12 @@ class App extends Component {
 
   render() {
     return (
+      <DragDropContextProvider backend={HTML5Backend}>
+
       <React.Fragment>
         <Router data={this.state} />
       </React.Fragment>
+    </DragDropContextProvider>
     );
   }
 }

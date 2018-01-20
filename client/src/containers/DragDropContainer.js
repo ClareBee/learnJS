@@ -2,12 +2,12 @@ import React from 'react';
 import update from 'immutability-helper';
 import shuffle from 'lodash/shuffle';
 import sampleSize from 'lodash/sampleSize';
-import { DragDropContext } from 'react-dnd';
+import { DragDropContextProvider, DragDropContext } from 'react-dnd';
 import DragDropBox from '../components/DragDropBox';
 import QuestionBox from '../components/QuestionBox';
 import HTML5Backend, { NativeTypes } from 'react-dnd-html5-backend';
 
-DragDropContext(HTML5Backend)
+
 class DragDropContainer extends React.Component {
   constructor(props){
     super(props);
@@ -96,6 +96,7 @@ class DragDropContainer extends React.Component {
     })
     console.log(answers);
     return(
+      	<DragDropContextProvider backend={HTML5Backend}>
       <div>
       <h1>Drag and Drop Container</h1>
       <div >
@@ -119,8 +120,9 @@ class DragDropContainer extends React.Component {
     </div>
 
     </div>
+	</DragDropContextProvider>
     )
   }
 }
 
-export default DragDropContainer;
+export default DragDropContext(HTML5Backend)(DragDropContainer);
