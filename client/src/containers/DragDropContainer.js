@@ -1,5 +1,7 @@
 import React from 'react';
 import update from 'immutability-helper';
+import shuffle from 'lodash/shuffle';
+import sampleSize from 'lodash/sampleSize';
 import { DragDropContext } from 'react-dnd';
 import DragDropBox from '../components/DragDropBox';
 import QuestionBox from '../components/QuestionBox';
@@ -11,9 +13,65 @@ class DragDropContainer extends React.Component {
     super(props);
     this.state = {
       dragDropBoxes: [{text: ""},{text:""},{text:""}],
-      questionBox: "",
-      droppedBoxIndex: [],
+      questionBox: {},
+      droppedBoxIndex: null,
+      chosenAnswers: [],
     }
+    this.getRandomQuestion = this.getRandomQuestion.bind(this);
+    this.handleAnswers = this.handleAnswers.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.answerClick = this.answerClick.bind(this);
+
+  }
+  handleClick(){
+    this.getRandomQuestion();
+  }
+
+//get random question from database results
+  getRandomQuestion(){
+    let questionArray = [];
+    console.log(this.props);
+    this.props.data.questions.map((question)=>{
+      questionArray.push(question)
+    });
+    console.log("random question");
+    console.log(this.props.questions);
+    console.log(questionArray);
+    const selectedQq = sampleSize(questionArray, 1);
+    console.log(selectedQq[0]);
+    this.setState({
+      questionBox: selectedQq[0]
+    })
+    this.forceUpdate();
+  }
+
+  answerClick(){
+    const questions = this.props.data.questions;
+    console.log("random answers accessed");
+    let answers = [];
+    questions.map((question) => {
+      answers.push(question.answer)
+    });
+    let chosenA = sampleSize(answers, 2);
+    this.setState({
+      chosenAnswers: chosenA
+    })
+    this.handleAnswers();
+  }
+
+  handleAnswers(){
+    let answerArray = this.state.chosenAnswers.slice();
+    console.log(this.state.questionBox)
+    answerArray.push();
+    const shuffled = shuffle(answerArray);
+    console.log(shuffled);
+    this.setState({
+      dragDropBoxes: [
+        {text: shuffled[0]},
+        {text: shuffled[1]},
+        {text: shuffled[2]},
+      ]
+    });
   }
   // componentDidReceiveProps(){
   //   console.log(this.props)
@@ -24,6 +82,7 @@ class DragDropContainer extends React.Component {
   //   })
   // }
   render(){
+
     const questions = this.props.data.questions;
     let answers = [];
     questions.map((question) => {
@@ -34,6 +93,8 @@ class DragDropContainer extends React.Component {
       <div>
       <h1>Drag and Drop Container</h1>
       <div >
+        <button onClick={this.handleClick}>Get random question</button>
+        <button onClick={this.answerClick}>Get random answers</button>
       {this.state.dragDropBoxes.map(({}, index) => (
         <DragDropBox
           answers={answers}
@@ -47,7 +108,7 @@ class DragDropContainer extends React.Component {
 
       <div>
         <QuestionBox
-    
+
         />
     </div>
 
