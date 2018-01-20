@@ -110,7 +110,7 @@ return(
 
 
   </div>
-  <MyModal image={this.state.dogImage}/>
+  <MyModal image={this.state.dogImage} points={this.state.points}/>
 </React.Fragment>
 );
 }

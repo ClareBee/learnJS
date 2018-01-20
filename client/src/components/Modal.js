@@ -7,14 +7,18 @@ class MyModal extends React.Component{
   }
 
   handleClick(e){
-    let gif = e.currentTarget;
+    let gif = this.refs.gif;
     gif.style.visibility = "hidden";
   }
   render(){
+    if(this.props.points == 3){
+      this.refs.gif.style.visibility = "visible";
+    }
     return(
-      <div onClick={this.handleClick} className="my-modal">
-        <img src={this.props.image}/>
+      <div ref="gif" onClick={this.handleClick} className="my-modal">
         <div className="delete-gif">&times;</div>
+        <img className="doggy-image" src={this.props.image}/>
+
       </div>
     )
   }
