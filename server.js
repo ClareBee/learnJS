@@ -54,15 +54,23 @@ app.post("/new-question", function(req, res){
 		res.json('ok');
 	});
 });
-
-app.get("/topic/:id", function(req, res){
-  db.collection("randomanswers").find().toArray(function(err, results){
+//delete all
+app.delete("/questions", function(req, res){
+  db.collection("questions").remove(function(err, result){
     if(err){
-      return console.log(err);
+      console.log(err);
     }
-    re.json(results);
+    console.log("Deleted all");
   });
 });
+// app.get("/topic/:id", function(req, res){
+//   db.collection("randomanswers").find().toArray(function(err, results){
+//     if(err){
+//       return console.log(err);
+//     }
+//     re.json(results);
+//   });
+// });
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
