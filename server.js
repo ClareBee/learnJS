@@ -63,6 +63,18 @@ app.delete("/questions/delete", function(req, res){
     console.log("Deleted all");
   });
 });
+//delete by id
+
+app.delete("/questions/delete/:id", function(req, res){
+  console.log('hit the delete by id route');
+  db.collection("questions").remove({"_id": ObjectId(req.params.id)}, function(err, result){
+    if(err){
+      console.log(err);
+      console.log("deleting didn't work");
+    }
+    console.log("deleted individual successfully");
+  });
+})
 // app.get("/topic/:id", function(req, res){
 //   db.collection("randomanswers").find().toArray(function(err, results){
 //     if(err){

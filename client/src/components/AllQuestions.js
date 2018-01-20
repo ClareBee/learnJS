@@ -4,16 +4,42 @@ class AllQuestions extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      emptied: false
+      emptied: false,
+      selectedQuestion: null
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    // this.deleteById = this.deleteById.bind(this);
   }
+  //delete individual question
   handleSubmit(e){
     e.preventDefault();
-    console.log(e);
-
+    console.log(e.target.name);
+    // this.setState({
+    //   selectedQuestion: e.target.name
+    // })
+    const deleteOneUrl = `/questions/delete/${e.target.name}`;
+    console.log(deleteOneUrl);
+    fetch(deleteOneUrl, {
+      method: "DELETE"
+    }).then(res => res)
+    .catch(error => console.log("Error: ", error))
+    .then(response => console.log("Respose: ", response));
+    this.forceUpdate();
   }
+
+
+  // deleteById(){
+  //   const deleteOneUrl = `/questions/delete/${this.state.selectedQuestion}`;
+  //   fetch(deleteOneUrl, {
+  //     method: "DELETE"
+  //   }).then(res => res)
+  //   .catch(error => console.log("Error: ", error))
+  //   .then(response => console.log("Respose: ", response));
+  //   this.forceUpdate();
+  // }
+
+  //delete all
   handleClick(){
     console.log(this.props);
     const deleteUrl = '/questions/delete';
@@ -26,6 +52,7 @@ class AllQuestions extends React.Component {
       emptied: true
     });
   }
+
   render(){
     console.log(this.props)
     let message = "";
@@ -35,7 +62,7 @@ class AllQuestions extends React.Component {
     }
     if(!this.state.emptied){
     allquestions = this.props.questions.map(question => {
-      return <form action="" method="" onSubmit={this.handleSubmit}><li value={question._id}>{question.question}</li><button>delete</button></form>
+      return <form action="" method="POST" name={question._id} onSubmit={this.handleSubmit}><li value={question._id}>{question.question}</li><button>delete</button></form>
       });
     }
     return(
