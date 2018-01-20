@@ -17,7 +17,7 @@ class Router extends React.Component {
           <Route exact path="/" component={WelcomePage}/>
           <Route path="/profile" component={Profile}/>
           <Route path="/new-question" component={NewQuestionForm} />
-          <Route path="/all-questions" render={props => <AllQuestions questions={this.props.data}/>} />
+          <Route path="/all-questions" render={props => <AllQuestions questions={this.props.data.questions}/>} />
         {/* passes through props from App.js and spreads url params  */}
           <Route path="/topics" render={props => <QuestionContainer questions={this.props.data} />}/>
           <Route exact path="/topics/:id" render={props => <Topic {...props} data={this.props.data} />} />
