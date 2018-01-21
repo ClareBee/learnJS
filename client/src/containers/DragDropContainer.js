@@ -6,6 +6,8 @@ import { DragDropContextProvider, DragDropContext } from 'react-dnd';
 import DragDropBox from '../components/DragDropBox';
 import QuestionBox from '../components/QuestionBox';
 import HTML5Backend, { NativeTypes } from 'react-dnd-html5-backend';
+import ItemTypes from '../components/ItemTypes';
+
 
 
 class DragDropContainer extends React.Component {
@@ -13,7 +15,12 @@ class DragDropContainer extends React.Component {
     super(props);
     this.state = {
       dragDropBoxes: [{text: ""},{text:""},{text:""}],
-      questionBox: {},
+      questionBox: {
+        accepts: "",
+        question: "",
+        answer: "",
+        lastDroppedItem: null
+      },
       droppedBoxIndex: null,
       chosenAnswers: [],
     }
@@ -22,7 +29,6 @@ class DragDropContainer extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.answerClick = this.answerClick.bind(this);
     this.generateAnswers = this.generateAnswers.bind(this);
-
   }
   handleClick(){
     this.getRandomQuestion();
@@ -43,11 +49,13 @@ class DragDropContainer extends React.Component {
     const selectedQq = sampleSize(questionArray, 1);
     console.log(selectedQq[0]);
     this.setState({
-      questionBox: selectedQq[0]
+      questionBox: {
+        accepts: selectedQq[0].answer,
+        question: selectedQq[0].question,
+        answer: selectedQq[0].answer,
+      }
     })
-    this.forceUpdate();
     this.generateAnswers();
-
   }
 
   generateAnswers(){
@@ -79,53 +87,45 @@ class DragDropContainer extends React.Component {
       ]
     });
   }
-  // componentDidReceiveProps(){
-  //   console.log(this.props)
-  //   let boxes = this.state.dragDropState.slice()
-  //   boxes.push(this.props);
-  //   this.setState({
-  //     dragDropBoxes: [{ text: boxes[0]}, {text: boxes[1]}, {text:boxes[2]}]
-  //   })
-  // }
-  render(){
 
+  render(){
     const questions = this.props.data.questions;
     let answers = [];
     questions.map((question) => {
       answers.push(question.answer)
-    })
-    console.log(answers);
+    });
+
     return(
 
-      	<DragDropContextProvider backend={HTML5Backend}>
-      <div>
-      <h1>Drag and Drop Container</h1>
+    <DragDropContextProvider backend={HTML5Backend}>
+        <div>
+          <h1>Drag and Drop Container</h1>
 
-      <div >
-        <button onClick={this.handleClick}>Get random question</button>
-        <button onClick={this.answerClick}>Get random answers</button>
-      {this.state.dragDropBoxes.map(({}, index) => (
-        <DragDropBox
-          answer={this.state.dragDropBoxes[index].text}
-          chosen={this.state.dragDropBoxes}
-          // lastDroppedItem={lastDroppedItem}
-          // onDrop={item => this.handleDrop(index, item)}
-          key={index}
-        />
-        ))}
-      </div>
+            <div >
+              <button onClick={this.handleClick}>Get random question</button>
+              <button onClick={this.answerClick}>Get random answers</button>
 
-      <div>
-        <QuestionBox
-          question={this.state.questionBox.question}
-        />
-    </div>
+              <div style={{ overflow: 'hidden', clear: 'both' }}>
+              {this.state.dragDropBoxes.map(({}, index) => (
+                <DragDropBox
+                  answer={this.state.dragDropBoxes[index].text}
+                  chosen={this.state.dragDropBoxes}
+                  name={this.state.questionBox.answer}
+                  key={index}/>
+                ))}
+              </div>
 
-
-    </div>
-
-	</DragDropContextProvider>
-    )
+            <div style={{ overflow: 'hidden', clear: 'both' }}>
+              <QuestionBox
+                ref="target"
+                accepts={this.state.questionBox.accepts}
+                question={this.state.questionBox.question}
+                name ={this.state.questionBox.question} />
+            </div>
+          </div>
+        </div>
+	   </DragDropContextProvider>
+    );
   }
 }
 

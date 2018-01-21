@@ -13,7 +13,6 @@ class MultipleChoice extends React.Component {
       chosenQuestions: 3,
       answeredQuestions: [],
       }
-
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
   this.getRandomThree = this.getRandomThree.bind(this);
@@ -34,25 +33,26 @@ handleSubmit(e){
     this.setState( prevState => {
       return {
       points: prevState.points + 1
-    }
+      }
     });
     this.styleAnswers(e, "green");
   }else{
     this.styleAnswers(e, "red");
   }
   let answered = this.state.answeredQuestions.slice();
-  answered.push(e.target.name)
+  answered.push(e.target.name);
+
   this.setState({
     answeredQuestions: answered
-  })
+  });
   this.forceUpdate();
 }
-
 
 styleAnswers(e, answerColor){
   e.target.style.color = answerColor;
   e.target.style.border = `solid 4px ${answerColor}`;
 }
+
 componentDidUpdate(){
   if(this.state.points == 3){
     const dogUrl = "https://dog.ceo/api/breeds/image/random";
@@ -78,11 +78,11 @@ componentDidUpdate(){
   }
 }
 
-handleAnotherRound(){
-  this.setState({
-    dogImage: ""
-  });
-}
+// handleAnotherRound(){
+//   this.setState({
+//     dogImage: ""
+//   });
+// }
 
 //where could this be called?
 getRandomThree(arr){
@@ -99,31 +99,38 @@ render(){
       <li key={index}>
         <p>{question.question}</p>
         <form onSubmit={this.handleSubmit} name={index} ref="answer-form">
-          <input onChange={this.handleChange} required type="text" name={question.answer} placeholder="Your answer"/>
-          <button disabled={this.state.answeredQuestions.includes(index.toString())} ref="submittedButton" className="answer-btn btn btn-success">Answer</button>
+          <input  onChange={this.handleChange}
+                  required type="text"
+                  name={question.answer}
+                  placeholder="Your answer"/>
+
+          <button disabled={this.state.answeredQuestions.includes(index.toString())}
+                  ref="submittedButton"
+                  className="answer-btn btn btn-success">
+           Answer
+          </button>
         </form>
       </li>
     );
   });
 
-return(
-  <React.Fragment>
-  <div>
-    <h1>Questions:</h1>
-    <ul>
-      {questionsAsked}
-    </ul>
-    <h1>{this.state.points}</h1>
-    {/* <img src={this.state.dogImage} /> */}
+  return(
+    <React.Fragment>
+      <div>
+        <h1>Questions:</h1>
+        <ul>
+          {questionsAsked}
+        </ul>
+        <h1>{this.state.points}</h1>
+      </div>
 
+      <MyModal  image={this.state.dogImage}
+                points={this.state.points}
+                answeredQuestions={this.state.answeredQuestions}/>
 
-
-  </div>
-  <MyModal image={this.state.dogImage} points={this.state.points} answeredQuestions={this.state.answeredQuestions}/>
-</React.Fragment>
-);
-}
-
+    </React.Fragment>
+    );
+  }
 }
 
 export default MultipleChoice;

@@ -27,11 +27,6 @@ MongoClient.connect("mongodb://localhost:27017/questiondb", function(err, client
   });
 });
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-// catch 404 and forward to error handler
-
-
 app.get('/', function(req, res){
   res.sendFile(__dirname + "client/src/app.js");
 });
@@ -54,6 +49,7 @@ app.post("/new-question", function(req, res){
 		res.json('ok');
 	});
 });
+
 //delete all
 app.delete("/questions/delete", function(req, res){
   db.collection("questions").remove(function(err, result){
@@ -63,6 +59,7 @@ app.delete("/questions/delete", function(req, res){
     console.log("Deleted all");
   });
 });
+
 //delete by id
 
 app.delete("/questions/delete/:id", function(req, res){
@@ -100,7 +97,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
 
 
 module.exports = app;

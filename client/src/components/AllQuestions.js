@@ -25,7 +25,6 @@ class AllQuestions extends React.Component {
     this.setState({
       selectedQuestion: qq
     });
-    this.forceUpdate();
   }
 
   //delete all
@@ -40,6 +39,7 @@ class AllQuestions extends React.Component {
     this.setState({
       emptied: true
     });
+    // ReactDOM.render()
   }
 
   render(){
@@ -57,10 +57,12 @@ class AllQuestions extends React.Component {
     allquestions = this.props.questions.map(question => {
 
       return <form action="" method="POST" name={question._id} onSubmit={this.handleSubmit}>
+
                 <li value={question._id}
                   className={this.state.selectedQuestion.includes(question._id) ? "deleted" : ""}>
                   {question.question}
                 </li>
+
                 <button key={question._id}
                   className={this.state.selectedQuestion.includes(question._id) ? "deleted" : ""}>
                   delete
@@ -76,7 +78,7 @@ class AllQuestions extends React.Component {
         {message}{allquestions}
       </ul>
     </React.Fragment>
-  );
+    );
   }
 }
 

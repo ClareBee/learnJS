@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ItemTypes from './ItemTypes';
-import { DropTarget } from 'react-dnd';
 import { DragSource } from 'react-dnd';
 
 const style = {
@@ -16,6 +15,7 @@ const style = {
 	lineHeight: 'normal',
 	float: 'left'
 }
+
 const boxSource = {
 	beginDrag(props) {
 		return {
@@ -23,18 +23,17 @@ const boxSource = {
 		}
 	},
   endDrag(props, monitor) {
-  const item = monitor.getItem()
-  const dropResult = monitor.getDropResult()
-
-  if (dropResult) {
-    console.log("You dropped sth")
-  }
-},
+  const item = monitor.getItem();
+  const dropResult = monitor.getDropResult();
+    if (dropResult) {
+      console.log(dropResult);
+    }
+  },
 }
 function collect(connect, monitor) {
  return {
    connectDragSource: connect.dragSource(),
-   isDragging: monitor.isDragging()
+   isDragging: monitor.isDragging(),
  };
 }
 
@@ -42,28 +41,40 @@ class DragDropBox extends React.Component {
   static propTypes = {
   connectDragSource: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired,
-}
+  isDropped: PropTypes.bool.isRequired,
+  name: PropTypes.string.isRequired,
+  }
+  constructor(props){
+    super(props);
+    this.handleSelection = this.handleSelection.bind(this);
+  }
 
-
-
+  handleSelection(){
+    if(this.props.name == this.props.answer){
+      alert("yep")
+    }else{
+      alert("nope")
+    }
+  }
+  component(){
+      this.handleSelection()
+    }
   render(){
-
-		let backgroundColor = 'red';
-    const { isDragging, connectDragSource } = this.props;
-		// if (isCorrect) {
-		// 	backgroundColor = 'green'
-		// } else if (isWrong) {
-		// 	backgroundColor = 'red'
-		// }
+		// let backgroundColor = 'red';
+    const { isDragging, isDropped, connectDragSource } = this.props;
+	  const backgroundColor = isDragging ? 'yellow' : 'red';
     console.log(this.props);
+    if(this.props.answer == this.props.name && isDragging){
+      alert("You're right!")
+    }
+
     return connectDragSource(
-      <div>
+
         <div style={{ ...style, backgroundColor }}>
-          <h2>{this.props.answer}</h2>
+          {isDropped ? <s>{this.props.answer}</s> : this.props.answer}
+          {isDropped ? alert("hello") : ""}
         </div>
-    
-      </div>
-  )
+    );
   }
 }
 export default DragSource(ItemTypes.BOX, boxSource, collect)(DragDropBox);

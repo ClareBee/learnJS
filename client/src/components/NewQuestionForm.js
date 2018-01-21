@@ -6,7 +6,8 @@ class NewQuestionForm extends React.Component {
     this.state = {
       topic: '',
       question: '',
-      answer: ''
+      answer: '',
+      submitted: false,
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -31,11 +32,13 @@ class NewQuestionForm extends React.Component {
     //clears out form on submission
     this.refs.questionForm.reset();
     //insert confirmation message on submission
+    this.setState({
+      submitted: true
+    })
   }
 
   addQuestion(question){
     console.log(question);
-    //should this go to 3001? server.js
     const url = "/new-question";
     fetch(url, {
       method: 'POST',
@@ -47,6 +50,7 @@ class NewQuestionForm extends React.Component {
     }).then(res => res.json())
     .catch(error => console.log('Error:', error))
     .then(response => console.log('Success:', response));
+    this.forceUpdate();
 }
 
   render(){

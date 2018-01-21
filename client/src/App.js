@@ -33,15 +33,13 @@ class App extends Component {
     });
   }
 
-
   render() {
     return (
       <DragDropContextProvider backend={HTML5Backend}>
-
-      <React.Fragment>
-        <Router data={this.state} />
-      </React.Fragment>
-    </DragDropContextProvider>
+        <React.Fragment>
+          <Router data={this.state} />
+        </React.Fragment>
+      </DragDropContextProvider>
     );
   }
 }

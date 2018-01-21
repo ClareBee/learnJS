@@ -15,6 +15,7 @@ class MyModal extends React.Component{
     let failureMessage = this.refs.failure;
     failureMessage.style.visibility = "hidden";
   }
+
   render(){
     if(this.props.points == 3){
       this.refs.gif.style.visibility = "visible";
