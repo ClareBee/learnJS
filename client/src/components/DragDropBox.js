@@ -41,7 +41,6 @@ class DragDropBox extends React.Component {
   static propTypes = {
   connectDragSource: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired,
-  isDropped: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   }
   constructor(props){
@@ -66,13 +65,12 @@ class DragDropBox extends React.Component {
     console.log(this.props);
     if(this.props.answer == this.props.name && isDragging){
       alert("You're right!")
-    }
+    } 
 
     return connectDragSource(
 
         <div style={{ ...style, backgroundColor }}>
-          {isDropped ? <s>{this.props.answer}</s> : this.props.answer}
-          {isDropped ? alert("hello") : ""}
+          <p>{this.props.answer}</p>
         </div>
     );
   }

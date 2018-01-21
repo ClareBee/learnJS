@@ -18,7 +18,6 @@ class QuestionContainer extends React.Component {
     });
   }
 
-  
 
   render(){
     const originalData = this.props.questions.questions;

@@ -20,7 +20,7 @@ class MyModal extends React.Component{
     if(this.props.points == 3){
       this.refs.gif.style.visibility = "visible";
     }
-    if(this.props.points > 0 && this.props.points < 3 && this.props.answeredQuestions.length == 3){
+    if(this.props.points !=3 && this.props.answeredQuestions.length == 3){
       this.refs.failure.style.visibility = "visible";
     }
     return(

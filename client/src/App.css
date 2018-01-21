@@ -97,6 +97,10 @@ input {
 .question-button, .answer-btn{
   float: right;
 }
+.clear {
+  border: 0;
+  color: black;
+}
 
 .my-modal {
   visibility: hidden;

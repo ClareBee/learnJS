@@ -33,7 +33,7 @@ class QuestionBox extends React.Component {
   connectDropTarget: PropTypes.func.isRequired,
   isOver: PropTypes.bool.isRequired,
   canDrop: PropTypes.bool.isRequired,
-  name: PropTypes.bool.isRequired,
+  name: PropTypes.string.isRequired,
   }
 
   render(){
