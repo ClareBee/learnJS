@@ -35,7 +35,9 @@ class NewQuestionForm extends React.Component {
     this.setState({
       submitted: true
     })
+    this.props.history.push('/all-questions');
     this.props.onUpdate();
+
   }
 
   addQuestion(question){

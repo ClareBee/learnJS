@@ -41,6 +41,7 @@ class AllQuestions extends React.Component {
       emptied: true
     });
     this.props.onUpdate();
+    console.log(this.props);
   }
 
   render(){
