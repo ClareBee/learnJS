@@ -25,6 +25,7 @@ class AllQuestions extends React.Component {
     this.setState({
       selectedQuestion: qq
     });
+    this.props.onUpdate();
   }
 
   //delete all
@@ -39,7 +40,6 @@ class AllQuestions extends React.Component {
     this.setState({
       emptied: true
     });
-    // ReactDOM.render()
   }
 
   render(){
@@ -56,7 +56,7 @@ class AllQuestions extends React.Component {
     if(!this.state.emptied){
     allquestions = this.props.questions.map(question => {
 
-      return <form action="" method="POST" name={question._id} onSubmit={this.handleSubmit}>
+      return <form key={question._id} action="" method="POST" name={question._id} onSubmit={this.handleSubmit}>
 
                 <li value={question._id}
                   className={this.state.selectedQuestion.includes(question._id) ? "deleted" : ""}>
@@ -72,12 +72,12 @@ class AllQuestions extends React.Component {
     }
     return(
       <React.Fragment>
-      <h1>all the questions</h1>
-      <button ref="deleteButton" onClick={this.handleClick} className={this.state.emptied ? "deleted" : ""}>Delete all</button>
-      <ul>
-        {message}{allquestions}
-      </ul>
-    </React.Fragment>
+        <h1>all the questions</h1>
+          <button ref="deleteButton" onClick={this.handleClick} className={this.state.emptied ? "deleted" : ""}>Delete all</button>
+          <ul>
+            {message}{allquestions}
+          </ul>
+      </React.Fragment>
     );
   }
 }

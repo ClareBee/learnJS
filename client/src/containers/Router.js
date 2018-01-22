@@ -11,14 +11,16 @@ import NavBar from '../components/NavBar';
 
 class Router extends React.Component {
   render(){
+    console.log(this.props);
     return (
       <BrowserRouter>
         <React.Fragment>
           <NavBar />
           <Route exact path="/" component={WelcomePage}/>
           <Route path="/profile" component={Profile}/>
-          <Route path="/new-question" component={NewQuestionForm} />
-          <Route path="/all-questions" render={props => <AllQuestions questions={this.props.data.questions}/>} />
+          <Route path="/new-question" render={props => <NewQuestionForm {...props} onUpdate={this.props.onUpdate}/>}/>
+          <Route path="/all-questions"
+                render={props => <AllQuestions {...props} questions={this.props.data.questions} onUpdate={this.props.onUpdate}/>} />
         {/* passes through props from App.js and spreads url params  */}
           <Route path="/topics" render={props => <QuestionContainer questions={this.props.data} />}/>
           <Route path="/drag-and-drop" render={props => <DragDropContainer {...props} data={this.props.data} />} />

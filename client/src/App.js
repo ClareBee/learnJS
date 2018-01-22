@@ -12,10 +12,11 @@ class App extends Component {
     this.state = {
       questions: []
     }
+    this.apiRequest = this.apiRequest.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
-
-  componentDidMount() {
+  apiRequest(){
     const url = "/questions";
     fetch(url)
     .then(function(response) {
@@ -33,11 +34,18 @@ class App extends Component {
     });
   }
 
+  handleUpdate(){
+    this.apiRequest();
+  }
+  componentDidMount() {
+    this.apiRequest();
+  }
+
   render() {
     return (
       <DragDropContextProvider backend={HTML5Backend}>
         <React.Fragment>
-          <Router data={this.state} />
+          <Router data={this.state} onUpdate={this.handleUpdate}/>
         </React.Fragment>
       </DragDropContextProvider>
     );

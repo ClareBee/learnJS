@@ -89,6 +89,10 @@ class DragDropContainer extends React.Component {
   }
 
   render(){
+    let warning = "";
+    if(this.props.data.questions.length < 3){
+          warning = <p>Not enough questions to play the game</p>
+    }
     const questions = this.props.data.questions;
     let answers = [];
     questions.map((question) => {
@@ -102,9 +106,9 @@ class DragDropContainer extends React.Component {
           <h1>Drag and Drop Container</h1>
 
             <div >
-              <button onClick={this.handleClick}>Get random question</button>
-              <button onClick={this.answerClick}>Get random answers</button>
-
+              <button disabled={!this.selectedQq} onClick={this.handleClick}>Get random question</button>
+              <button disabled={!this.selectedQq} onClick={this.answerClick}>Get random answers</button>
+              {warning}
               <div style={{ overflow: 'hidden', clear: 'both' }}>
               {this.state.dragDropBoxes.map(({}, index) => (
                 <DragDropBox
