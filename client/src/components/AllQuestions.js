@@ -63,7 +63,7 @@ class AllQuestions extends React.Component {
     return(
       <React.Fragment>
         <h1>all the questions</h1>
-          <button ref="deleteButton" onClick={this.handleClick} className={this.state.emptied ? "deleted" : ""}>Delete all</button>
+          <button ref="deleteButton" onClick={this.handleClick} className={allquestions.length < 1 ? "deleted" : ""}>Delete all</button>
           <ul>
             {message}{allquestions}
           </ul>

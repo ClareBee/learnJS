@@ -23,10 +23,10 @@ class QuestionContainer extends React.Component {
     let originalData = this.props.questions.questions;
     let duplicatesRemoved = uniqBy(originalData, 'topic');
     let advice = "";
-    if(originalData.length == 0){
-      advice = <p>No questions - why not add some?</p>
+    if(originalData.length < 3){
+      advice = <p>Not enough questions - why not add some?</p>
     }else{
-      advice = <p>Yup</p>
+      advice = <p>Choose from this list of topics</p>
     }
     let questions = duplicatesRemoved.map((question) => {
       let url = `/topics/${question._id}`;
