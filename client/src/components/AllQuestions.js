@@ -40,36 +40,25 @@ class AllQuestions extends React.Component {
     this.setState({
       emptied: true
     });
+    this.props.onUpdate();
   }
 
   render(){
     console.log(this.props)
     let message = "";
-    let allquestions = "";
-    let btn = this.refs.deleteButton;
-    if(this.state.emptied || this.state.selectedQuestion.length == this.props.questions.length){
-       message = <li>All questions deleted</li>
-       if(btn){
-       btn.style.visibility = "hidden";
-     }
-    }
-    if(!this.state.emptied){
-    allquestions = this.props.questions.map(question => {
+    let allquestions = this.props.questions.map(question => {
 
       return <form key={question._id} action="" method="POST" name={question._id} onSubmit={this.handleSubmit}>
 
-                <li value={question._id}
-                  className={this.state.selectedQuestion.includes(question._id) ? "deleted" : ""}>
+                <li value={question._id}>
                   {question.question}
                 </li>
 
-                <button key={question._id}
-                  className={this.state.selectedQuestion.includes(question._id) ? "deleted" : ""}>
+                <button key={question._id}>
                   delete
                 </button>
              </form>
       });
-    }
     return(
       <React.Fragment>
         <h1>all the questions</h1>
