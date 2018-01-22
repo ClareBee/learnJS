@@ -4,7 +4,6 @@ class AllQuestions extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      emptied: false,
       selectedQuestion: []
     }
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,16 +36,15 @@ class AllQuestions extends React.Component {
     })
     .catch(error => console.log("Error: ", error))
     .then(response => console.log("Success: ", response));
-    this.setState({
-      emptied: true
-    });
     this.props.onUpdate();
-    console.log(this.props);
   }
 
   render(){
     console.log(this.props)
     let message = "";
+    if(this.props.questions.length < 1){
+      message = <p>No questions, why not add some?</p>
+    }
     let allquestions = this.props.questions.map(question => {
 
       return <form key={question._id} action="" method="POST" name={question._id} onSubmit={this.handleSubmit}>
@@ -63,9 +61,10 @@ class AllQuestions extends React.Component {
     return(
       <React.Fragment>
         <h1>all the questions</h1>
+          {message}
           <button ref="deleteButton" onClick={this.handleClick} className={allquestions.length < 1 ? "deleted" : ""}>Delete all</button>
           <ul>
-            {message}{allquestions}
+            {allquestions}
           </ul>
       </React.Fragment>
     );
