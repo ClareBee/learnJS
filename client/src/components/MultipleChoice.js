@@ -13,6 +13,7 @@ class MultipleChoice extends React.Component {
       dogImage: "",
       chosenQuestions: 3,
       answeredQuestions: [],
+      newQqSet: []
       // done: false
       }
   this.handleChange = this.handleChange.bind(this);
@@ -94,20 +95,28 @@ tryAgain(){
     dogImage: "",
     answeredQuestions: [],
   })
-
+  const randomQqSet = this.getRandomThree(this.props.topic.questions);
+  this.setState({
+    newQqSet: randomQqSet
+  })
 }
 
 //where could this be called without infinite loops and still accessible on mount?
 getRandomThree(arr){
-  const selected = sampleSize(arr, 3).slice();
+  const selected = sampleSize(arr, 10).slice();
   return selected;
 }
 
 render(){
   console.log(this.state.answeredQuestions)
   var style = {}
-  // const threeQq = this.getRandomThree(this.props.topic.questions).slice();
-  const threeQuestions = this.props.topic.questions.slice(0, this.state.chosenQuestions);
+  let threeQuestions = [];
+  if(this.state.newQqSet.length > 0){
+      threeQuestions = this.state.newQqSet.slice(0, this.state.chosenQuestions);
+    } else {
+      threeQuestions = this.props.topic.questions.slice(0, this.state.chosenQuestions);
+    }
+    console.log(this.state.newQqSet);
   console.log(this.state.inputAnswer);
   const questionsAsked = threeQuestions.map((question, index) => {
     if(this.state.answeredQuestions.includes(index.toString())) {
