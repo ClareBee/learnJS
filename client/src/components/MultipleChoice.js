@@ -1,6 +1,6 @@
 import React from 'react';
 import sampleSize from 'lodash/sampleSize';
-import MyModal from './Modal';
+import MyModal from './MyModal';
 import ReactDOM from 'react-dom';
 
 class MultipleChoice extends React.Component {
@@ -48,7 +48,7 @@ handleSubmit(e){
   this.forceUpdate();
 }
 
-
+//refactor into MyModal component
 componentDidUpdate(){
   if(this.state.points == 3){
     const dogUrl = "https://dog.ceo/api/breeds/image/random";

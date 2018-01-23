@@ -71,15 +71,8 @@ app.delete("/questions/delete/:id", function(req, res){
     }
     console.log("deleted individual successfully");
   });
-})
-// app.get("/topic/:id", function(req, res){
-//   db.collection("randomanswers").find().toArray(function(err, results){
-//     if(err){
-//       return console.log(err);
-//     }
-//     re.json(results);
-//   });
-// });
+});
+
 
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

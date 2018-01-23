@@ -52,7 +52,7 @@ class QuestionBox extends React.Component {
 				{isActive ? 'Release to drop' : 'Drag a box here'}
         <h4 ref={name}>{this.props.question}</h4>
 			</div>
-		)
+		);
   }
 }
 export default DropTarget(ItemTypes.BOX, boxTarget, collect)(QuestionBox);

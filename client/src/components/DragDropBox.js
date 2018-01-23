@@ -51,7 +51,7 @@ class DragDropBox extends React.Component {
   }
 
   render(){
-    const { isDragging, isDropped, connectDragSource } = this.props;
+    const { isDragging, connectDragSource } = this.props;
 	  const backgroundColor = isDragging ? '#FF7328' : '#16C170';
     console.log(this.props);
     if(this.props.answer == this.props.name && isDragging){

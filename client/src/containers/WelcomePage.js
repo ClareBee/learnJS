@@ -1,12 +1,10 @@
 import React from 'react';
 
 
-
 class WelcomePage extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-
     }
   }
 
@@ -14,14 +12,11 @@ class WelcomePage extends React.Component {
 
     return(
       <React.Fragment>
-      <section className="welcome" >
-
-      </section>
-      <div className="welcome-message"><h1>LearnJS</h1></div>
-    </React.Fragment>
-
-    )
+        <section className="welcome" >
+        </section>
+        <div className="welcome-message"><h1>LearnJS</h1></div>
+      </React.Fragment>
+    );
   }
-
 }
 export default WelcomePage;

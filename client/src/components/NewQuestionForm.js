@@ -7,7 +7,6 @@ class NewQuestionForm extends React.Component {
       topic: '',
       question: '',
       answer: '',
-      submitted: false,
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -27,21 +26,14 @@ class NewQuestionForm extends React.Component {
     //stops page from reloading
     e.preventDefault();
     const newQuestion = this.state;
-    console.log(newQuestion);
     this.addQuestion(newQuestion);
     //clears out form on submission
     this.refs.questionForm.reset();
-    //insert confirmation message on submission
-    this.setState({
-      submitted: true
-    })
     this.props.history.push('/all-questions');
     this.props.onUpdate();
-
   }
 
   addQuestion(question){
-    console.log(question);
     const url = "/new-question";
     fetch(url, {
       method: 'POST',
@@ -54,10 +46,9 @@ class NewQuestionForm extends React.Component {
     .catch(error => console.log('Error:', error))
     .then(response => console.log('Success:', response));
     this.forceUpdate();
-}
+  }
 
   render(){
-    console.log(this.state.topic);
     return(
       <React.Fragment>
         <h1 className="sub-title">Found out something new? Add it here!</h1>
@@ -74,8 +65,6 @@ class NewQuestionForm extends React.Component {
             <div className="row">
               <input onChange={this.handleChange} required type="text" name="answer" placeholder="Answer"/>
             </div>
-
-
             <div className="row">
               <button className="question-button qq-btn btn btn-success">Add your question</button>
             </div>
@@ -83,7 +72,7 @@ class NewQuestionForm extends React.Component {
 
         </div>
       </React.Fragment>
-    )
+    );
   }
 }
 

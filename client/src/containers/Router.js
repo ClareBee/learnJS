@@ -11,7 +11,6 @@ import NavBar from '../components/NavBar';
 
 class Router extends React.Component {
   render(){
-    console.log(this.props);
     return (
       <BrowserRouter>
         <React.Fragment>
@@ -21,7 +20,6 @@ class Router extends React.Component {
           <Route path="/new-question" render={props => <NewQuestionForm {...props} onUpdate={this.props.onUpdate}/>}/>
           <Route path="/all-questions"
                 render={props => <AllQuestions {...props} questions={this.props.data.questions} onUpdate={this.props.onUpdate}/>} />
-        {/* passes through props from App.js and spreads url params  */}
           <Route path="/topics" render={props => <QuestionContainer questions={this.props.data} />}/>
           <Route path="/drag-and-drop" render={props => <DragDropContainer {...props} data={this.props.data} />} />
           <Route exact path="/topics/:id" render={props => <Topic {...props} data={this.props.data} />} />

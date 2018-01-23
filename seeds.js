@@ -15,16 +15,20 @@ var questions = [
     answer: "American Standard Code for Information Interchange"
   },
   {
-    topic: "acronyms",
-    question: "What is DTD?",
-    answer: "Document Type Definition"
+    topic: "Acronyms",
+    question: "What is a CDN?",
+    answer: "Content Delivery Network"
+  },
+  {
+    topic: "Acronyms",
+    question: "What is an API?",
+    answer: "Application Programming Interface"
   },
   {
     topic: "Maths",
     question: "What is the method on Math for exponentiation?",
     answer: ".pow"
   },
-
   {
     topic: "Maths",
     question: "What's the BigO notation for searching an array?",
@@ -146,6 +150,21 @@ var questions = [
     question: "Who were the original authors of Redux?",
     answer: "Dan Abramov and Andrew Clark"
   },
+  {
+    topic: "People",
+    question: "Who was the original author of JavaScript?",
+    answer: "Brendan Eich"
+  },
+  {
+    topic: "JS",
+    question: "Which operator checks type at run time?",
+    answer: "instanceof"
+  },
+  {
+    topic: "JS",
+    question: "What goes on the left of an arrow function?",
+    answer: "Input"
+  }  
 ]
 
 db.questions.insertMany(questions);

@@ -39,32 +39,23 @@ class DragDropContainer extends React.Component {
 //get random question from database results
   getRandomQuestion(){
     let questionArray = [];
-    console.log(this.props);
     this.props.data.questions.map((question)=>{
       questionArray.push(question)
     });
-    console.log("random question");
-    console.log(this.props.questions);
-    console.log(questionArray);
     const selectedQq = sampleSize(questionArray, 1);
-    console.log(selectedQq[0]);
     this.setState({
       questionBox: {
         accepts: selectedQq[0].answer,
         question: selectedQq[0].question,
         answer: selectedQq[0].answer,
       }
-    })
-    this.setState({
-      dragDropBoxes: [{text: ""},{text:""},{text:""}],
-      droppedBoxIndex: null,
-    })
+    });
     this.generateAnswers();
   }
 
+//generates two random answers and combines with correct answer
   generateAnswers(){
     const questions = this.props.data.questions;
-    console.log("random answers accessed");
     let answers = [];
     questions.map((question) => {
       answers.push(question.answer)
@@ -76,17 +67,14 @@ class DragDropContainer extends React.Component {
     this.setState({
       dragDropBoxes: [{text: ""},{text:""},{text:""}],
       droppedBoxIndex: null,
-    })
+    });
   }
-
+//shuffles the answers and sets text on boxes
   handleAnswers(){
     let answerArray = this.state.chosenAnswers.slice();
     let thisQuestion = this.state.questionBox;
-    console.log(thisQuestion);
     answerArray.push(thisQuestion.answer);
-    console.log(answerArray);
     const shuffled = shuffle(answerArray);
-    console.log(shuffled);
     this.setState({
       dragDropBoxes: [
         {text: shuffled[0]},
@@ -94,12 +82,6 @@ class DragDropContainer extends React.Component {
         {text: shuffled[2]},
       ]
     });
-  }
-  reset(){
-    setTimeout(
-    this.setState({
-      dragDropBoxes: [{text: ""},{text:""},{text:""}]
-    }), 3000)
   }
 
 
