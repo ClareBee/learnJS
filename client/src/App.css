@@ -1,7 +1,6 @@
-
+/* base css */
 body {
   padding: 50px;
-  /* overflow: hidden; */
 }
 
 h1, h2, h3 {
@@ -11,6 +10,16 @@ h1, h2, h3 {
 p {
   font-family: 'Open Sans', sans-serif;
 }
+input {
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  margin: 0 5px;
+  border-radius: 5px;
+}
+/* ==================================================== */
+/* welcome page */
+
 .title {
   font-size: 3.5em;
 }
@@ -39,6 +48,9 @@ p {
   align-items: center;
   justify-content: center;
 }
+/* ==================================================== */
+/* profile page */
+
 .profile {
   height: 100vh;
   background-size: cover;
@@ -63,38 +75,27 @@ p {
   background-color: white;
   display: inline-block;
 }
+/* ==================================================== */
+/* Topic view */
+
 .topic-list {
   width: 30%;
   margin: 0 auto;
 }
 .topic-item {
+  list-style: none;
   font-size: 3rem;
 }
-.form-container {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: -70px;
-}
+
 .row {
   width: 500px;
   height: 80px;
-}
-input {
-  width: 100%;
-  height: 50px;
-  padding: 10px;
-  margin: 0 5px;
-  border-radius: 5px;
 }
 
 .deleted {
   visibility: hidden;
 }
-.App {
-  text-align: center;
-}
+
 .question-button, .answer-btn {
   float: right;
   margin: 3px;
@@ -107,6 +108,23 @@ input {
 .capitalise::first-letter {
   text-transform: uppercase;
 }
+.mult-choice-form {
+  margin-bottom: 10px;
+}
+
+/* ==================================================== */
+/* New question form */
+
+.form-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -70px;
+}
+
+/* ==================================================== */
+/* Modal */
 .my-modal {
   visibility: hidden;
   position: fixed;
@@ -147,8 +165,56 @@ input {
   border-radius: 5px;
   font-size: 50px;
 }
-.mult-choice-form {
-  margin-bottom: 10px;
+
+/* ==================================================== */
+/* Drag and Drop  */
+
+ .boxes, .drag-drop-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.question-boxes, .drag-btns {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.qq-btn, .aa-btn {
+  width: 200px;
+  margin: 0 5px 0 5px;
+  height: 70px;
+  box-shadow: 2px 2px 2px 3px rgba(0,0,0,0.4);
+}
+
+/* ==================================================== */
+/* All questions view */
+.all-qq {
+  list-style: none;
+}
+
+.added-qq {
+  font-size: 25px;
+  padding: 15px;
+  border-bottom: 2px solid #F8F8F8;
+  transition: all 0.3s ease-in;
+}
+.added-qq:hover {
+  background-color: lightgray;
+}
+.delete-all-btn {
+  width: 150px;
+  box-shadow: 1px 1px 1px 2px rgba(0,0,0,0.4);
+  margin-bottom: 20px;
+}
+
+/* ==================================================== */
+/* Create-react-app css */
+.App {
+  text-align: center;
 }
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -173,44 +239,4 @@ input {
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
-
- .boxes, .drag-drop-display {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.question-boxes, .drag-btns {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.qq-btn, .aa-btn {
-  width: 200px;
-  margin: 0 5px 0 5px;
-  height: 70px;
-  box-shadow: 2px 2px 2px 3px rgba(0,0,0,0.4);
-}
-
-.all-qq {
-  list-style: none;
-}
-
-.added-qq {
-  font-size: 25px;
-  padding: 15px;
-  border-bottom: 2px solid #F8F8F8;
-  transition: all 0.3s ease-in;
-}
-.added-qq:hover {
-  background-color: lightgray;
-}
-.delete-all-btn {
-  width: 150px;
-  box-shadow: 1px 1px 1px 2px rgba(0,0,0,0.4);
-  margin-bottom: 20px;
 }
