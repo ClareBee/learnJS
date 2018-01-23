@@ -40,7 +40,6 @@ class AllQuestions extends React.Component {
   }
 
   render(){
-    console.log(this.props)
     let message = "";
     if(this.props.questions.length < 1){
       message = <p>No questions, why not add some?</p>
@@ -53,16 +52,16 @@ class AllQuestions extends React.Component {
                   {question.question}
                 </li>
 
-                <button key={question._id}>
+                <button key={question._id} className="btn btn-danger">
                   delete
                 </button>
              </form>
       });
     return(
       <React.Fragment>
-        <h1>all the questions</h1>
+        <h1>All the questions...</h1>
           {message}
-          <button ref="deleteButton" onClick={this.handleClick} className={allquestions.length < 1 ? "deleted" : ""}>Delete all</button>
+          <button type="button" ref="deleteButton" onClick={this.handleClick} className={allquestions.length < 1 ? "deleted" : "btn btn-danger"}>Delete all</button>
           <ul>
             {allquestions}
           </ul>

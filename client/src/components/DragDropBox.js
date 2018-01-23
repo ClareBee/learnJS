@@ -4,16 +4,19 @@ import ItemTypes from './ItemTypes';
 import { DragSource } from 'react-dnd';
 
 const style = {
-	height: '12rem',
-	width: '12rem',
-	marginRight: '1.5rem',
-	marginBottom: '1.5rem',
+	height: '17rem',
+	width: '17rem',
+	margin: '1.5rem',
 	color: 'white',
+  borderRadius: '5px',
 	padding: '1rem',
+  fontSize: '1.5rem',
 	textAlign: 'center',
 	fontSize: '1rem',
 	lineHeight: 'normal',
-	float: 'left'
+	float: 'left',
+  boxShadow: '2px 2px 2px 3px rgba(0,0,0,0.4)'
+
 }
 
 const boxSource = {
@@ -49,16 +52,16 @@ class DragDropBox extends React.Component {
 
   render(){
     const { isDragging, isDropped, connectDragSource } = this.props;
-	  const backgroundColor = isDragging ? 'yellow' : 'red';
+	  const backgroundColor = isDragging ? '#FF7328' : '#16C170';
     console.log(this.props);
     if(this.props.answer == this.props.name && isDragging){
-      alert("You're right!")
+      alert("Well done! You're right!");
     }
 
     return connectDragSource(
 
         <div style={{ ...style, backgroundColor }}>
-          <p>{this.props.answer}</p>
+          <h4>{this.props.answer}</h4>
         </div>
     );
   }

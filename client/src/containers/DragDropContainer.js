@@ -55,6 +55,10 @@ class DragDropContainer extends React.Component {
         answer: selectedQq[0].answer,
       }
     })
+    this.setState({
+      dragDropBoxes: [{text: ""},{text:""},{text:""}],
+      droppedBoxIndex: null,
+    })
     this.generateAnswers();
   }
 
@@ -69,6 +73,10 @@ class DragDropContainer extends React.Component {
     this.setState({
       chosenAnswers: chosenA
     });
+    this.setState({
+      dragDropBoxes: [{text: ""},{text:""},{text:""}],
+      droppedBoxIndex: null,
+    })
   }
 
   handleAnswers(){
@@ -87,6 +95,13 @@ class DragDropContainer extends React.Component {
       ]
     });
   }
+  reset(){
+    setTimeout(
+    this.setState({
+      dragDropBoxes: [{text: ""},{text:""},{text:""}]
+    }), 3000)
+  }
+
 
   render(){
     let warning = "";
@@ -103,29 +118,33 @@ class DragDropContainer extends React.Component {
 
     <DragDropContextProvider backend={HTML5Backend}>
         <div>
-          <h1>Drag and Drop Container</h1>
-
-            <div >
-              <button disabled={!this.selectedQq} onClick={this.handleClick}>Get random question</button>
-              <button disabled={!this.selectedQq} onClick={this.answerClick}>Get random answers</button>
+          <h1>Drag and Drop</h1>
+            <div className="drag-drop-display">
+              <div className="drag-btns">
+              <button disabled={!this.props.data.questions} className="qq-btn btn btn-info" onClick={this.handleClick}>Get random question</button>
+              <button disabled={!this.state.questionBox.question} className="aa-btn btn btn-info" onClick={this.answerClick}>Get your options</button>
               {warning}
-              <div style={{ overflow: 'hidden', clear: 'both' }}>
-              {this.state.dragDropBoxes.map(({}, index) => (
-                <DragDropBox
-                  answer={this.state.dragDropBoxes[index].text}
-                  chosen={this.state.dragDropBoxes}
-                  name={this.state.questionBox.answer}
-                  key={index}/>
-                ))}
-              </div>
-
-            <div style={{ overflow: 'hidden', clear: 'both' }}>
-              <QuestionBox
-                ref="target"
-                accepts={this.state.questionBox.accepts}
-                question={this.state.questionBox.question}
-                name ={this.state.questionBox.question} />
             </div>
+              <div className="boxes">
+              <div style={{ overflow: 'hidden', clear: 'both' }}>
+                <QuestionBox
+                  ref="target"
+                  accepts={this.state.questionBox.accepts}
+                  question={this.state.questionBox.question}
+                  name ={this.state.questionBox.question} />
+              </div>
+              <div className="question-boxes">
+                <div style={{ overflow: 'hidden', clear: 'both' }}>
+                {this.state.dragDropBoxes.map(({}, index) => (
+                  <DragDropBox
+                    answer={this.state.dragDropBoxes[index].text}
+                    chosen={this.state.dragDropBoxes}
+                    name={this.state.questionBox.answer}
+                    key={index}/>
+                  ))}
+                </div>
+              </div>
+              </div>
           </div>
         </div>
 	   </DragDropContextProvider>

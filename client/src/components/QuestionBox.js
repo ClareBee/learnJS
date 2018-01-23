@@ -4,11 +4,11 @@ import ItemTypes from './ItemTypes';
 import { DropTarget } from 'react-dnd';
 
 const style = {
-	height: '12rem',
-	width: '12rem',
-	marginRight: '1.5rem',
-	marginBottom: '1.5rem',
+	height: '17rem',
+	width: '17rem',
+  margin: '1.5rem',
 	color: 'white',
+  borderRadius: '5px',
 	padding: '1rem',
 	textAlign: 'center',
 	fontSize: '1rem',
@@ -36,21 +36,21 @@ class QuestionBox extends React.Component {
   name: PropTypes.string.isRequired,
   }
 
+
   render(){
     const { name, canDrop, isOver, connectDropTarget } = this.props;
-
 		const isActive = canDrop && isOver;
 		let backgroundColor = 'grey';
 		if (isActive) {
 			backgroundColor = 'green'
 		} else if (canDrop) {
-			backgroundColor = 'red'
+			backgroundColor = '#16C170'
 		}
 
 		return connectDropTarget(
 			<div style={{ ...style, backgroundColor }}>
 				{isActive ? 'Release to drop' : 'Drag a box here'}
-        <h2 ref={name}>{this.props.question}</h2>
+        <h4 ref={name}>{this.props.question}</h4>
 			</div>
 		)
   }

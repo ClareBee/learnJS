@@ -101,7 +101,10 @@ input {
   border: 0;
   color: black;
 }
+.capitalise::first-letter {
+  text-transform: uppercase;
 
+}
 .my-modal {
   visibility: hidden;
   position: fixed;
@@ -111,7 +114,16 @@ input {
   height: 50%;
   background-color: rgba(255, 255, 255, .9);
   box-shadow: 2px 14px 18px 3px rgba(0,0,0,0.4);
-
+}
+.success-message {
+  position: absolute;
+  top: 0;
+  z-index: 3;
+  background: white;
+  opacity: 0.9;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 4px;
 }
 .failure-message {
   text-align: center;
@@ -156,4 +168,26 @@ input {
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+ .boxes, .drag-drop-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.question-boxes, .drag-btns {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.qq-btn, .aa-btn {
+  width: 200px;
+  margin: 0 5px 0 5px;
+  height: 70px;
+  box-shadow: 2px 2px 2px 3px rgba(0,0,0,0.4);
+
 }

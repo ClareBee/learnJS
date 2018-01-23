@@ -26,22 +26,22 @@ class QuestionContainer extends React.Component {
     if(originalData.length < 3){
       advice = <p>Not enough questions - why not add some?</p>
     }else{
-      advice = <p>Choose from this list of topics</p>
+      advice = <p>Feature Coming Soon: Filter question by topic</p>
     }
-    let questions = duplicatesRemoved.map((question) => {
+    let topics = duplicatesRemoved.map((question) => {
       let url = `/topics/${question._id}`;
       return  <li className="topic-item" onClick={this.handleClick} value={question._id} key={question._id}>
-                <NavLink to={url} key={question._id}>{question.topic}</NavLink>
+                <NavLink to={url} key={question._id}><h3 className="capitalise">{question.topic}</h3></NavLink>
               </li>
     });
 
     return(
-    <div>
-      {advice}
-      <ul className="topic-list">
-        {questions}
-      </ul>
-    </div>
+      <div>
+        {advice}
+        <ul className="topic-list">
+          {topics}
+        </ul>
+      </div>
     );
   }
 }

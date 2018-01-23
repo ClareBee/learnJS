@@ -14,13 +14,11 @@ class MultipleChoice extends React.Component {
       chosenQuestions: 3,
       answeredQuestions: [],
       newQqSet: []
-      // done: false
       }
   this.handleChange = this.handleChange.bind(this);
   this.handleSubmit = this.handleSubmit.bind(this);
   this.getRandomThree = this.getRandomThree.bind(this);
   this.tryAgain = this.tryAgain.bind(this);
-  this.styleAnswers = this.styleAnswers.bind(this);
 }
 
 handleChange(e){
@@ -40,9 +38,6 @@ handleSubmit(e){
         points: prevState.points + 1
       }
     });
-    this.styleAnswers(e, "green");
-  } else {
-    this.styleAnswers(e, "red");
   }
   let answered = this.state.answeredQuestions.slice();
   answered.push(e.target.name);
@@ -53,11 +48,6 @@ handleSubmit(e){
   this.forceUpdate();
 }
 
-//can't clear the colours after submit therefore replace styling with simplified inline options
-styleAnswers(e, answerColor){
-  // e.target.style.color = answerColor;
-  // e.target.style.border = `solid 4px ${answerColor}`;
-}
 
 componentDidUpdate(){
   if(this.state.points == 3){
@@ -82,9 +72,10 @@ componentDidUpdate(){
     console.log(error.message);
     });
     this.tryAgain();
-    if(this.state.points != 3 && this.state.answeredQuestions.length == 3)
+    }
+    if(this.state.points != this.state.chosenQuestions && this.state.answeredQuestions.length == this.state.chosenQuestions){
     this.tryAgain();
-  }
+    }
 }
 
 tryAgain(){
@@ -101,14 +92,12 @@ tryAgain(){
   })
 }
 
-//where could this be called without infinite loops and still accessible on mount?
 getRandomThree(arr){
   const selected = sampleSize(arr, 10).slice();
   return selected;
 }
 
 render(){
-  console.log(this.state.answeredQuestions)
   var style = {}
   let threeQuestions = [];
   if(this.state.newQqSet.length > 0){
@@ -116,8 +105,6 @@ render(){
     } else {
       threeQuestions = this.props.topic.questions.slice(0, this.state.chosenQuestions);
     }
-    console.log(this.state.newQqSet);
-  console.log(this.state.inputAnswer);
   const questionsAsked = threeQuestions.map((question, index) => {
     if(this.state.answeredQuestions.includes(index.toString())) {
       style = {border: "2px solid purple"};
@@ -152,12 +139,12 @@ render(){
   return(
     <React.Fragment>
       <div>
-        <h1>Questions:</h1>
-        <button onClick={this.tryAgain}>Try Again</button>
+        <button className="btn btn-primary" onClick={this.tryAgain}>Change questions</button>
+        <h1>Score:{this.state.points}/{this.state.chosenQuestions}</h1>
         <ul ref="answerList">
           {questionsAsked}
         </ul>
-        <h1>{this.state.points}</h1>
+
       </div>
 
       <MyModal  image={this.state.dogImage}
