@@ -26,7 +26,8 @@ class QuestionContainer extends React.Component {
     if(originalData.length < 3){
       advice = <p>Not enough questions - why not add some?</p>
     }else{
-      advice = <p>Feature Coming Soon: Filter question by topic</p>
+      advice = <p>Feature Coming Soon: Filter question by topic
+        <br/>Click for multiple choice Q&A</p>
     }
     let topics = duplicatesRemoved.map((question) => {
       let url = `/topics/${question._id}`;

@@ -46,23 +46,22 @@ class AllQuestions extends React.Component {
     }
     let allquestions = this.props.questions.map(question => {
 
-      return <form key={question._id} action="" method="POST" name={question._id} onSubmit={this.handleSubmit}>
+      return <form className="container" key={question._id} action="" method="POST" name={question._id} onSubmit={this.handleSubmit}>
 
-                <li value={question._id}>
+                <li className="added-qq" value={question._id}>
                   {question.question}
+                  <button key={question._id} className="answer-btn btn btn-danger">
+                    delete
+                  </button>
                 </li>
-
-                <button key={question._id} className="btn btn-danger">
-                  delete
-                </button>
              </form>
       });
     return(
       <React.Fragment>
         <h1>All the questions...</h1>
           {message}
-          <button type="button" ref="deleteButton" onClick={this.handleClick} className={allquestions.length < 1 ? "deleted" : "btn btn-danger"}>Delete all</button>
-          <ul>
+          <button type="button" ref="deleteButton" onClick={this.handleClick} className={allquestions.length < 1 ? "deleted" : "delete-all-btn btn btn-danger"}>Delete all</button>
+          <ul className="all-qq">
             {allquestions}
           </ul>
       </React.Fragment>

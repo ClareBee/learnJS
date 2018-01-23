@@ -14,6 +14,7 @@ class Profile extends React.Component{
           <img className="profile-pic" src={ProfilePic} />
           <div className="profile-info">
             <h2>UserName: Clare </h2>
+            <h5>Feature coming soon: authentication</h5>
           </div>
         </section>
       )

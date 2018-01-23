@@ -77,7 +77,7 @@ class NewQuestionForm extends React.Component {
 
 
             <div className="row">
-              <button className="question-button btn btn-success">Add your question</button>
+              <button className="question-button qq-btn btn btn-success">Add your question</button>
             </div>
           </form>
 

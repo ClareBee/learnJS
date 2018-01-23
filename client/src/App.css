@@ -85,6 +85,7 @@ input {
   width: 100%;
   height: 50px;
   padding: 10px;
+  margin: 0 5px;
   border-radius: 5px;
 }
 
@@ -94,8 +95,10 @@ input {
 .App {
   text-align: center;
 }
-.question-button, .answer-btn{
+.question-button, .answer-btn {
   float: right;
+  margin: 3px;
+  box-shadow: 1px 1px 1px 2px rgba(0,0,0,0.4);
 }
 .clear {
   border: 0;
@@ -103,7 +106,6 @@ input {
 }
 .capitalise::first-letter {
   text-transform: uppercase;
-
 }
 .my-modal {
   visibility: hidden;
@@ -144,6 +146,9 @@ input {
   padding-bottom: 5px;
   border-radius: 5px;
   font-size: 50px;
+}
+.mult-choice-form {
+  margin-bottom: 10px;
 }
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -189,5 +194,23 @@ input {
   margin: 0 5px 0 5px;
   height: 70px;
   box-shadow: 2px 2px 2px 3px rgba(0,0,0,0.4);
+}
 
+.all-qq {
+  list-style: none;
+}
+
+.added-qq {
+  font-size: 25px;
+  padding: 15px;
+  border-bottom: 2px solid #F8F8F8;
+  transition: all 0.3s ease-in;
+}
+.added-qq:hover {
+  background-color: lightgray;
+}
+.delete-all-btn {
+  width: 150px;
+  box-shadow: 1px 1px 1px 2px rgba(0,0,0,0.4);
+  margin-bottom: 20px;
 }

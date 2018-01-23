@@ -109,12 +109,12 @@ render(){
     if(this.state.answeredQuestions.includes(index.toString())) {
       style = {border: "2px solid purple"};
     }else {
-      style = {border: "2px solid blue"}
+      style = {border: "2px solid #FF7328"}
     }
     return(
       <li key={index}>
-        <p>{question.question}</p>
-        <form
+        <h4>{question.question}</h4>
+        <form className="mult-choice-form"
               onSubmit={this.handleSubmit}
               name={index} ref="answerForm">
           <input  onChange={this.handleChange}
@@ -139,7 +139,7 @@ render(){
   return(
     <React.Fragment>
       <div>
-        <button className="btn btn-primary" onClick={this.tryAgain}>Change questions</button>
+        <button className="qq-btn btn btn-info" onClick={this.tryAgain}>Change questions</button>
         <h1>Score:{this.state.points}/{this.state.chosenQuestions}</h1>
         <ul ref="answerList">
           {questionsAsked}
