@@ -22,6 +22,12 @@ To install make sure you have mongoDB running ("mongod", "mongo") first.
 ```
 
 The app runs on localhost:3000 and should launch on the welcome page visible above
+###
+User can:
+* add new questions to the database
+* delete questions 
+* take a quiz - with a pop-up dog gif for full marks!
+* do a drag-and-drop multiple-choice test
 
 ### Progress
 This is an ongoing project, started in the final week of a coding bootcamp.
