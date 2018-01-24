@@ -1,4 +1,4 @@
-# mernExperiment
+# learnJS
 > MERN App using React Router (in progress):
 >A full-stack app design to help someone learn JavaScript and CS concepts.
 
