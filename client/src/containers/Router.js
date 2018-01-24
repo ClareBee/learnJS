@@ -22,6 +22,7 @@ class Router extends React.Component {
                 render={props => <AllQuestions {...props} questions={this.props.data.questions} onUpdate={this.props.onUpdate}/>} />
           <Route path="/topics" render={props => <QuestionContainer questions={this.props.data} />}/>
           <Route path="/drag-and-drop" render={props => <DragDropContainer {...props} data={this.props.data} />} />
+        
           <Route exact path="/topics/:id" render={props => <Topic {...props} data={this.props.data} />} />
 
         </React.Fragment>

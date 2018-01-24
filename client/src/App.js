@@ -37,17 +37,16 @@ class App extends Component {
   handleUpdate(){
     this.apiRequest();
   }
+
   componentDidMount() {
     this.apiRequest();
   }
 
   render() {
     return (
-      <DragDropContextProvider backend={HTML5Backend}>
         <React.Fragment>
           <Router data={this.state} onUpdate={this.handleUpdate}/>
         </React.Fragment>
-      </DragDropContextProvider>
     );
   }
 }
