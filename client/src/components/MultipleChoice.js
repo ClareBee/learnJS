@@ -1,7 +1,6 @@
 import React from 'react';
 import sampleSize from 'lodash/sampleSize';
 import MyModal from './MyModal';
-import ReactDOM from 'react-dom';
 
 class MultipleChoice extends React.Component {
   constructor(props){
@@ -85,11 +84,11 @@ tryAgain(){
     points: 0,
     dogImage: "",
     answeredQuestions: [],
-  })
+  });
   const randomQqSet = this.getRandomThree(this.props.topic.questions);
   this.setState({
     newQqSet: randomQqSet
-  })
+  });
 }
 
 getRandomThree(arr){
@@ -144,7 +143,6 @@ render(){
         <ul ref="answerList">
           {questionsAsked}
         </ul>
-
       </div>
 
       <MyModal  image={this.state.dogImage}

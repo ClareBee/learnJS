@@ -21,6 +21,7 @@ class MyModal extends React.Component{
 
   render(){
     if(this.props.points == 3){
+
       this.refs.gif.style.visibility = "visible";
     }
     if(this.props.points != this.state.questionSet && this.props.answeredQuestions.length == this.state.questionSet){
@@ -30,7 +31,7 @@ class MyModal extends React.Component{
       <div>
         <div ref="gif" onClick={this.handleClick} className="my-modal">
           <div className="delete-gif">&times;</div>
-          <img className="doggy-image" src={this.props.image}/>
+          <img className="doggy-image" src={this.props.image} alt="cute dog"/>
           <div className="success-message"><p>Congratulations! {this.state.questionSet} points - full marks!</p></div>
         </div>
 

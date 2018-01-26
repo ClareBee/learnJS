@@ -11,7 +11,7 @@ class Profile extends React.Component{
     return(
       <section className="profile">
         <h1>Your Profile</h1>
-        <img className="profile-pic" src={ProfilePic} />
+        <img className="profile-pic" src={ProfilePic} alt="profile pic" />
         <div className="profile-info">
           <h2>UserName: Clare </h2>
           <h5>Feature coming soon: authentication</h5>

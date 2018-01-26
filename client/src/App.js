@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import Router from "./containers/Router";
-import HTML5Backend from 'react-dnd-html5-backend';
-import { DragDropContext } from 'react-dnd';
-import { DragDropContextProvider } from 'react-dnd';
 
 
 class App extends Component {
