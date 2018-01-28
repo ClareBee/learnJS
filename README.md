@@ -1,6 +1,6 @@
 # learnJS
 > MERN App using React Router (in progress):
->A full-stack app design to help someone learn JavaScript and CS concepts.
+>A full-stack app design to help someone learn JavaScript and general CS concepts.
 
 ![Image of the welcome page](./welcome.png)
 ****
@@ -47,6 +47,6 @@ API used for dog Gifs: https://dog.ceo/ - no API key needed
 
 ## Database
 
-Simple one-table database in MongoDB of questions
+Simple one-collection database in MongoDB
 
 
